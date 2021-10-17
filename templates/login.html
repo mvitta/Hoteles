@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+  <title>Hotel MinTic</title>
+</head>
+
+<body>
+  <div class="login">
+    <h1>Login</h1>
+    <hr>
+    <!-- action se coloca la funcion hacia donde se va dirigir despues de validar el formulario -->
+    <form action="hacerlogin" method="post" class="formulario">
+      
+      <div class="div">
+        <label><i class="icon"></i></label>
+        <input type="text" placeholder="Usuario" id="usuario" name="usuario" required />
+      </div>
+      
+      <div>
+        <label id="password"><i class="icon"></i></label>
+        <input type="password" placeholder="Contraseña" id="contra" name="contra" required />
+      </div>
+
+      <div>
+        <button type="submit" class="button">Ingresar</button>
+        <button type="reset" class="button">Cancelar</button>
+      </div>
+      <hr>
+      
+      <div>
+        <a href="#" class="pregunta">¿Olvidaste tu contraseña?</a>
+      </div>
+      <br>
+      <br>
+      
+      <div>
+        <a href="{{url_for('registro')}}" class="npregunta">¿No tienes cuenta?</a>
+      </div>
+
+    </form>
+  </div>
+</body>
+
+</html>

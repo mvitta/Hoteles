@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/style_dataTables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_buscar_y_crear.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/style_dashboard.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/normalize.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="/static/css/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="/static/css/material-design-iconic-font/css/material-design-iconic-font.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_footer.css') }}">
+    <title>Editar o Eliminar</title>
+</head>
+
+<body>
+    <div class="container_general">
+        <div class="container_navigation">
+            <div class="header">
+                <span class="name_icon"><i class="zmdi zmdi-account zmdi-hc-3x"></i></span><span class="name_title">
+                    <h2>Administrador</h2>
+                </span>
+            </div>
+            <ul>
+                <li>
+                    <div class="sub_menu">
+                        <span class="name_icon"><i class="zmdi zmdi-accounts zmdi-hc-2x"></i></span>
+                        <span class="name_title">Gestionar Usuarios</span>
+                    </div>
+                    <div class="sub_menu_list">
+                        <ul>
+                            <li><a href="#"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Registro Usuarios</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="sub_menu_list">
+                        <ul>
+                            <li><a href="#"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Editar Usuarios</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="sub_menu_list">
+                        <ul>
+                            <li><a href="#"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Eliminar Usuarios</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="sub_menu"><span class="name_icon"><i class="zmdi zmdi-hotel zmdi-hc-2x"></i></span>
+                        <span class="name_title">Gestionar Habitaciones</span>
+                    </div>
+                    <div class="sub_menu_list">
+                        <ul>
+                            <li><a href="{{url_for('crearHabitacionAdmin')}}"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span class="name_title">Crear
+                                        Habitacion</span></a></li>
+                            <li><a href="{{url_for('EditarEliminarAdmin')}}"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Editar y Eliminar Habitacion</span></a></li>
+
+
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="sub_menu"><span class="name_icon"><i class="zmdi zmdi-hotel zmdi-hc-2x"></i></span>
+                        <span class="name_title">Gestionar Reservas</span>
+                    </div>
+                    <div class="sub_menu_list">
+                        <ul>
+                            <li><a href="#"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span class="name_title">Ver
+                                        Reservas</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="sub_menu"><span class="name_icon"><i class="zmdi zmdi-hotel zmdi-hc-2x"></i></span>
+                        <span class="name_title">Gestionar Calificacion Habitacion</span>
+                    </div>
+                    <div class="sub_menu_list">
+                        <ul>
+                            <li><a href="#"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span class="name_title">Ver
+                                        Calificacion de habitaciones</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="sub_menu"><span class="name_icon"><i class="zmdi zmdi-hotel zmdi-hc-2x"></i></span>
+                        <span class="name_title">Gestionar Comentario </span>
+                    </div>
+                    <div class="sub_menu_list">
+                        <ul>
+                            <li><a href="#"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span class="name_title">Ver
+                                        Comentario</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="name_icon"><i class="zmdi zmdi-power zmdi-hc-2x"></i></span>
+                        <span class="name_title">Cerrar Sesion</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="container_main">
+            <div class="container_topbar">
+                <div class="container_toggle"></div>
+                <div class="container_name_user"></div>
+                <div class="container_user"><a href="#"><i class="zmdi zmdi-account-box  zmdi-hc-3x"></i></a></div>
+            </div>
+            <div class="container_sub_main">
+                <section class="buscarhab">
+                    <br> <br>
+                    <h1 class="u_1649601167 dmNewParagraph" id="1649601167" data-uialign="center"
+                        data-element-type="paragraph" localization_key="googleTranslate.ih9vPk3.30">
+                        <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
+                            <b><span class="font-size-36 lh-1"></span></b>
+                        </font><span style="font-weight: 400;">
+                            <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
+                                <b><span style="font-weight: 400;"
+                                        class="font-size-36 lh-1 m-specific m-font-size-30">Editar y Eliminar
+                                        Habitaciones</span></b>
+                            </font>
+                        </span>
+                    </h1>
+                    <br>
+                    <br>
+                    <style>
+                        /* Glyph, by Harry Roberts */
+                        hr.style-eight {
+                            overflow: visible;
+                            /* For IE */
+                            padding: 0;
+                            border: none;
+                            border-top: medium double #333;
+                            color: #333;
+                            text-align: center;
+                        }
+
+                        hr.style-eight:after {
+                            content: "§";
+                            display: inline-block;
+                            position: relative;
+                            top: -0.7em;
+                            font-size: 1.5em;
+                            padding: 0 0.25em;
+                            background: white;
+                        }
+                    </style>
+                    <hr class="style-eight">
+                    <br>
+                </section>
+                <div id="buscar">
+                    <table id="example" class="display" style="width:80%">
+                        <thead>
+                            <tr>
+                                <th>Habitaciones</th>
+                                <th>Tipo de cama</th>
+                                <th>Tipo de sabana</th>
+                                <th>Servicios</th>
+                                <th>capacidad</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in range(1, 101) -%}
+                            <tr>
+                                <td>habitacion {{i}}</td>
+                                <td>doble</td>
+                                <td>Estandar</td>
+                                <td>sin servicio</td>
+                                <td>2</td>
+                                <td>$320,800</td>
+                            </tr>
+                            {% endfor -%}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div id="divBotones">
+                    <input type="button" value="Editar habitacion" class="">
+                    <input type="button" value="Eliminar Habitacion" class="">
+                    <input type="button" value="ver comentarios" class="">
+                </div>
+                <br> <br>
+
+
+            </div>
+            <!-- FOOTER -->
+            <div class="footer-grids">
+                <div class="footer one">
+                    <h3>More About Company</h3>
+                    <p> Nemo enim ipsam voluptatem quia
+                        voluptas sit aspernatur aut odit aut fugit,
+                        sed quia consequuntur magni dolores eos qui
+                        ratione voluptatem sequi nesciunt.</p>
+                    <p class="adam">- Patrick Victoria, CEO</p>
+                    <div class="clear"></div>
+                </div>
+                <div class="footer two">
+                    <h3>Keep Connected</h3>
+                    <ul>
+                        <li><a class="fb" href="#"><i></i>Like us on Facebook</a></li>
+                        <li><a class="fb1" href="#"><i></i>Follow us on Twitter</a></li>
+                        <li><a class="fb2" href="#"><i></i>Add us on Instagram</a></li>
+                        <li><a class="fb3" href="#"><i></i>Follow us on Youtube</a></li>
+                    </ul>
+                </div>
+                <div class="footer three">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li>The company name <span>Lorem ipsum dolor,</span>Glasglow Dr 40 Fe 72. </li>
+                        <li>1234567890 </li>
+                        <li><a href="mailto:info@example.com">contact@example.com</a> </li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="copy-right-grids">
+                <div class="copy-left">
+                    <p class="footer-gd">© 2016 Simple Footer Widget. All Rights Reserved | Design by <a
+                            href="https://w3layouts.com/" target="_blank">W3layouts</a></p>
+                </div>
+                <div class="copy-right">
+                    <ul>
+                        <li><a href="#">Company Information</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q81/x+965DzO0rT7abk41JStQIAqvgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+
+<!-- <script type="text/javascript" charset="utf8" src="/static/js/dataTables.js"></script> -->
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8" src="/static/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/dashboard.js' ) }}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
+
+
+
+</html>

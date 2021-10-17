@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_reserva.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/style_dashboard.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/normalize.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="/static/css/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="/static/css/material-design-iconic-font/css/material-design-iconic-font.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_footer.css') }}">
+    <title>Buscar habitacion</title>
+</head>
+
+<body>
+    <div class="container_general">
+        <div class="container_navigation">
+            <div class="header">
+                <span class="name_icon"><i class="zmdi zmdi-account zmdi-hc-3x"></i></span><span class="name_title">
+                    <h2>Usuario</h2>
+                </span>
+            </div>
+            <ul>
+                <li>
+                    <div class="sub_menu"><span class="name_icon"><i class="zmdi zmdi-hotel zmdi-hc-2x"></i></span>
+                        <span class="name_title">Habitaciones</span>
+                    </div>
+                    <div class="sub_menu_list">
+                        <ul>
+                            <li><a href="{{url_for('buscarHabitacion')}}"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Buscar Habitaciones</span></a></li>
+                            <li><a href="{{url_for('reserva')}}"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Reservar Habitacion</span></a></li>
+                            <li><a href="#"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Buscar Reserva</span></a></li>
+                            <li><a href="#"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Editar Reserva</span></a></li>
+                            <li><a href="#"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Eliminar Reserva</span></a></li>
+                            <li><a href="{{url_for('comentario')}}"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Agregar Comentario</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="name_icon"><i class="zmdi zmdi-power zmdi-hc-2x"></i></span>
+                        <span class="name_title">Cerrar Sesion</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="container_main">
+            <div class="container_topbar">
+                <div class="container_toggle"></div>
+                <div class="container_name_user">{{data}}</div>
+                <div class="container_user"><a href="#"><i class="zmdi zmdi-account-box  zmdi-hc-3x"></i></a></div>
+            </div>
+            <div class="container_sub_main">
+                <!--MAIN-->
+                <div class="main">
+                    <!--MAIN-container-->
+                    <div class="container">
+                        <h2>Formulario de reserva</h2>
+
+                        <form action="" enctype="multipart/form-data" method="post" name="formulario_html5"
+                            autocomplete="off" id="formReservas">
+                            <label for="nombre">Nombre</label></br>
+                            <input type="text" name="nombre" id="nombre" class="cajas"></br>
+
+                            <label for="apellido">Apellido</label></br>
+                            <input type="text" name="apellido" id="apellido" class="cajas"></br>
+
+                            <label for="email">Correo Electronico</label></br>
+                            <input type="email" name="email" id="email" class="cajas"></br>
+
+                            <label for="telefono">Teléfono</label></br>
+                            <input type="number" name="telefono" id="telefono" class="cajas"></br>
+
+                            <label for="llegada">Fecha y Hora de Llegada</label></br>
+                            <input type="datetime-local" id="llegada" name="fecha-hora-llegada" class="cajas">
+                            </br>
+
+                            <label for="salida">Fecha y Horade Salida</label></br>
+                            <input type="datetime-local" id="salida" name="fecha-hora-salida" class="cajas">
+                            </br>
+
+                            <label for="estadia">Días de permanencia</label></br>
+                            <select id="estadia" class="cajas">
+                                <option value="1" label="1">
+                                <option value="2" label="2">
+                                <option value="3" label="3">
+                                <option value="4" label="4">
+                                <option value="5" label="5">
+                            </select></br>
+
+                            <label for="estadia">Numero de Personas</label></br>
+                            <select id="estadia" class="cajas">
+                                <option value="1" label="1">
+                                <option value="2" label="2">
+                                <option value="3" label="3">
+                                <option value="4" label="4">
+                                <option value="5" label="5">
+                            </select></br>
+
+                            <label for="estudios">Nivel de estudios</label> </br>
+                            <input type="range" id="estudios" name="estudios"></br>
+                            <input type="submit" value="enviar" name="submit" class="btn">
+
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- FOOTER -->
+            <div class="footer-grids">
+                <div class="footer one">
+                    <h3>More About Company</h3>
+                    <p> Nemo enim ipsam voluptatem quia
+                        voluptas sit aspernatur aut odit aut fugit,
+                        sed quia consequuntur magni dolores eos qui
+                        ratione voluptatem sequi nesciunt.</p>
+                    <p class="adam">- Patrick Victoria, CEO</p>
+                    <div class="clear"></div>
+                </div>
+                <div class="footer two">
+                    <h3>Keep Connected</h3>
+                    <ul>
+                        <li><a class="fb" href="#"><i></i>Like us on Facebook</a></li>
+                        <li><a class="fb1" href="#"><i></i>Follow us on Twitter</a></li>
+                        <li><a class="fb2" href="#"><i></i>Add us on Instagram</a></li>
+                        <li><a class="fb3" href="#"><i></i>Follow us on Youtube</a></li>
+                    </ul>
+                </div>
+                <div class="footer three">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li>The company name <span>Lorem ipsum dolor,</span>Glasglow Dr 40 Fe 72. </li>
+                        <li>1234567890 </li>
+                        <li><a href="mailto:info@example.com">contact@example.com</a> </li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="copy-right-grids">
+                <div class="copy-left">
+                    <p class="footer-gd">© 2016 Simple Footer Widget. All Rights Reserved | Design by <a
+                            href="https://w3layouts.com/" target="_blank">W3layouts</a></p>
+                </div>
+                <div class="copy-right">
+                    <ul>
+                        <li><a href="#">Company Information</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q81/x+965DzO0rT7abk41JStQIAqvgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/dashboard.js' ) }}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
+
+
+
+</html>
