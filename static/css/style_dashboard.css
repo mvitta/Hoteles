@@ -235,7 +235,7 @@
     width           : calc(100% - 300px);
     left            : 300px;
     min-height      : 150vh;
-    background-color: #F5F5F5;
+    background-color: #ffffff;
     transition      : 0.5s;
 }
 
