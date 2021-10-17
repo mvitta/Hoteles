@@ -8,6 +8,7 @@ app.secret_key = os.urandom(34)
 
 @app.route('/')
 def index():
+    print("Este es un mensaje nuevo")
     return render_template('index.html')
 
 
