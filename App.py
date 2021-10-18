@@ -51,7 +51,6 @@ def hacerlogin():
         # si no se cumple el metodo POST
         return "Hola Mundo"
     except Exception as error:
-        # si se produce una excepcion
         print("SE PRODUJO UNA EXCEPCION: ", error)
         return redirect(url_for('index'))
 

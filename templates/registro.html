@@ -7,6 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
   <title>Hotel MinTic</title>
+  <style>
+    .mensaje {
+      font-size: 13px;
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -15,31 +23,42 @@
 
     <form action="/">
       <hr>
-      <label><i class="icon "></i></label>
-      <input type="text" placeholder="Cedula" required />
+      <span><label><i class="icon "></i></label></span>
+      <span>
+        <input class="datosRegistro" type="text" placeholder="Cedula" />
+      </span>
+      <div id="msgCedula" class="mensaje">
 
-      <label><i class="icon "></i></label>
-      <input type="text" placeholder="Nombre" required />
-
-      <label><i class="icon"></i></label>
-      <input type="text" placeholder="Apellido" required />
-
-      <label><i class="icon"></i></label>
-      <input type="text" placeholder="Correo" required />
-
-      <label id="password"><i class="icon"></i></label>
-      <input type="password" placeholder="Contraseña" required />
-
-      <label id="rpassword"><i class="icon"></i></label>
-      <input type="password" placeholder="Repita su contraseña" required />
+      </div>
+      <span><label><i class="icon "></i></label></span>
+      <span>
+        <input class="datosRegistro" type="text" placeholder="Nombre" />
+      </span>
+      <span><label><i class="icon"></i></label></span>
+      <span>
+        <input class="datosRegistro" type="text" placeholder="Apellido" />
+      </span>
+      <span><label><i class="icon"></i></label></span>
+      <span>
+        <input class="datosRegistro" type="text" placeholder="Correo" />
+      </span>
+      <span><label id="password"><i class="icon"></i></label></span>
+      <span>
+        <input class="datosRegistro" type="password" placeholder="Contraseña" />
+      </span>
+      <span><label id="rpassword"><i class="icon"></i></label></span>
+      <span>
+        <input class="datosRegistro" type="password" placeholder="Repita su contraseña" />
+      </span>
       <hr>
       <p><input class="check-input" type="checkbox" value="" id="flexCheckDefault">
         Estoy de acuerdo con los <a href="#"><br> terminos y condiciones</a></p>
 
-      <button type="submit" class="button">Ingresar</button>
+      <button type="button" class="button" onclick="eventoBoton()">Ingresar</button>
       <button type="button" class="button">Cancelar</button>
     </form>
   </div>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/validarRegistro.js' ) }}"></script>
 </body>
 
 </html>
