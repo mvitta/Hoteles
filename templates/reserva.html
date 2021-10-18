@@ -37,7 +37,7 @@
                             <li><a href="{{url_for('reserva')}}"><span class="name_icon"><i
                                             class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
                                         class="name_title">Reservar Habitacion</span></a></li>
-                            <li><a href="#"><span class="name_icon"><i
+                            <li><a href="{{url_for('buscarReserva')}}"><span class="name_icon"><i
                                             class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
                                         class="name_title">Buscar Reserva</span></a></li>
                             <li><a href="#"><span class="name_icon"><i
@@ -62,67 +62,67 @@
         </div>
 
         <div class="container_main">
-            <div class="container_topbar">
+            <div class="container_topbar" style="border-bottom: 1px solid black;">
                 <div class="container_toggle"></div>
                 <div class="container_name_user">{{data}}</div>
                 <div class="container_user"><a href="#"><i class="zmdi zmdi-account-box  zmdi-hc-3x"></i></a></div>
             </div>
-            <div class="container_sub_main">
-                <!--MAIN-->
-                <div class="main">
-                    <!--MAIN-container-->
-                    <div class="container">
-                        <h2>Formulario de reserva</h2>
+            <!--MAIN-->
+            <div class="main" style="background: #373B44;
+                /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right, #4286f4, #373B44);
+                /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right, #4286f4, #373B44);
+                /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;">
+                <!--MAIN-container-->
+                <h2>Formulario de reserva</h2>
+                <div class="container">
+                    <form action="" enctype="multipart/form-data" method="post" name="formulario_html5"
+                        autocomplete="off" id="formReservas">
+                        <label for="nombre">Nombre</label></br>
+                        <input type="text" name="nombre" id="nombre" class="cajas"></br>
 
-                        <form action="" enctype="multipart/form-data" method="post" name="formulario_html5"
-                            autocomplete="off" id="formReservas">
-                            <label for="nombre">Nombre</label></br>
-                            <input type="text" name="nombre" id="nombre" class="cajas"></br>
+                        <label for="apellido">Apellido</label></br>
+                        <input type="text" name="apellido" id="apellido" class="cajas"></br>
 
-                            <label for="apellido">Apellido</label></br>
-                            <input type="text" name="apellido" id="apellido" class="cajas"></br>
+                        <label for="email">Correo Electronico</label></br>
+                        <input type="email" name="email" id="email" class="cajas"></br>
 
-                            <label for="email">Correo Electronico</label></br>
-                            <input type="email" name="email" id="email" class="cajas"></br>
+                        <label for="telefono">Teléfono</label></br>
+                        <input type="number" name="telefono" id="telefono" class="cajas"></br>
 
-                            <label for="telefono">Teléfono</label></br>
-                            <input type="number" name="telefono" id="telefono" class="cajas"></br>
+                        <label for="llegada">Fecha y Hora de Llegada</label></br>
+                        <input type="datetime-local" id="llegada" name="fecha-hora-llegada" class="cajas">
+                        </br>
 
-                            <label for="llegada">Fecha y Hora de Llegada</label></br>
-                            <input type="datetime-local" id="llegada" name="fecha-hora-llegada" class="cajas">
-                            </br>
+                        <label for="salida">Fecha y Hora de Salida</label></br>
+                        <input type="datetime-local" id="salida" name="fecha-hora-salida" class="cajas">
+                        </br>
 
-                            <label for="salida">Fecha y Horade Salida</label></br>
-                            <input type="datetime-local" id="salida" name="fecha-hora-salida" class="cajas">
-                            </br>
+                        <label for="estadia">Días de permanencia</label></br>
+                        <select id="estadia" class="cajas">
+                            <option value="1" label="1">
+                            <option value="2" label="2">
+                            <option value="3" label="3">
+                            <option value="4" label="4">
+                            <option value="5" label="5">
+                        </select></br>
 
-                            <label for="estadia">Días de permanencia</label></br>
-                            <select id="estadia" class="cajas">
-                                <option value="1" label="1">
-                                <option value="2" label="2">
-                                <option value="3" label="3">
-                                <option value="4" label="4">
-                                <option value="5" label="5">
-                            </select></br>
+                        <label for="estadia">Numero de Personas</label></br>
+                        <select id="estadia" class="cajas">
+                            <option value="1" label="1">
+                            <option value="2" label="2">
+                            <option value="3" label="3">
+                            <option value="4" label="4">
+                            <option value="5" label="5">
+                        </select></br>
 
-                            <label for="estadia">Numero de Personas</label></br>
-                            <select id="estadia" class="cajas">
-                                <option value="1" label="1">
-                                <option value="2" label="2">
-                                <option value="3" label="3">
-                                <option value="4" label="4">
-                                <option value="5" label="5">
-                            </select></br>
+                        <label for="estudios">Nivel de estudios</label> </br>
+                        <input type="range" id="estudios" name="estudios"></br>
+                        <input type="submit" value="enviar" name="submit" class="btn">
 
-                            <label for="estudios">Nivel de estudios</label> </br>
-                            <input type="range" id="estudios" name="estudios"></br>
-                            <input type="submit" value="enviar" name="submit" class="btn">
-
-                        </form>
-                    </div>
+                    </form>
                 </div>
-
-
             </div>
             <!-- FOOTER -->
             <div class="footer-grids">

@@ -1,0 +1,66 @@
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#contenedorGeneral {
+    margin: 40px;
+    padding: 20px;
+    height: 95%;
+    background-color: #3067a538;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+#contenedorTitulo {
+    text-align: center;
+}
+
+#label {
+    display: inline-block;
+    font-weight: bold;
+}
+
+#datos {
+    margin-left: 10px;
+    display: inline-block;
+}
+
+#infoHabitacion {
+    display: inline-block;
+    padding: 10px;
+}
+
+#infoHabitacion .seccion {
+    display: block;
+    text-align: center;
+}
+
+.llegadaSalida div {
+    display: inline-block;
+    padding: 5px;
+    font-weight: bold;
+}
+
+input[type="submit"] {
+    width: 180px;
+    background: #4091EC;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    align-self: flex-end;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 10px;
+}
+
+input[type="submit"]:hover {
+    background: #1c2e44;
+}
+
+#divButton {
+    text-align: center;
+}

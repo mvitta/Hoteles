@@ -20,6 +20,7 @@ def login():
 def registro():
     return render_template('registro.html')
 
+
 @app.route('/hacerlogin', methods=['POST'])
 def hacerlogin():
     print(request.method)
@@ -64,14 +65,19 @@ def DashboardUsuariofinal():
     return render_template('DashboardUsuariofinal.html')
 
 
+@app.route('/DashboardUsuariofinal/buscarHabitacion')
+def buscarHabitacion():
+    return render_template('BuscarHabitacion.html')
+
+
 @app.route('/DashboardUsuariofinal/reserva')
 def reserva():
     return render_template('reserva.html')
 
 
-@app.route('/DashboardUsuariofinal/buscarHabitacion')
-def buscarHabitacion():
-    return render_template('BuscarHabitacion.html')
+@app.route('/DashboardUsuariofinal/buscarReserva')
+def buscarReserva():
+    return render_template('BuscarReservaUsuariofinal.html')
 
 
 @app.route('/DashboardUsuariofinal/comentario')

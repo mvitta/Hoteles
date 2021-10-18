@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/style_dashboard.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/normalize.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="/static/css/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="/static/css/material-design-iconic-font/css/material-design-iconic-font.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_reserva.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_BuscarReserva.css') }}">
+    <title>Dashboard Usuario</title>
+</head>
+
+<body>
+
+    <div class="container_general">
+        <div class="container_navigation">
+            <div class="header">
+                <span class="name_icon"><i class="zmdi zmdi-account zmdi-hc-3x"></i></span><span class="name_title">
+                    <h2 id="perfil">Usuario</h2>
+                </span>
+            </div>
+            <ul>
+                <li>
+                    <div class="sub_menu"><span class="name_icon"><i class="zmdi zmdi-hotel zmdi-hc-2x"></i></span>
+                        <span class="name_title">Habitaciones</span>
+                    </div>
+                    <div class="sub_menu_list">
+                        <ul>
+                            <li><a href="{{url_for('buscarHabitacion')}}"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Buscar Habitaciones</span></a></li>
+                            <li><a href="{{url_for('reserva')}}"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Reservar Habitacion</span></a></li>
+                            <li><a href="{{url_for('buscarReserva')}}"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Buscar Reserva</span></a></li>
+                            <li><a href="#"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Editar Reserva</span></a></li>
+                            <li><a href="#"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Eliminar Reserva</span></a></li>
+                            <li><a href="{{url_for('comentario')}}"><span class="name_icon"><i
+                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
+                                        class="name_title">Agregar Comentario</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="name_icon"><i class="zmdi zmdi-power zmdi-hc-2x"></i></span>
+                        <span class="name_title">Cerrar Sesion</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="container_main">
+            <div class="container_topbar">
+                <div class="container_toggle"></div>
+                <div class="container_name_user">{{data}}</div>
+                <div class="container_user"><a href="#"><i class="zmdi zmdi-account-box  zmdi-hc-3x"></i></a></div>
+            </div>
+            <div class="container_sub_main">
+
+                <div id="contenedorGeneral">
+                    <div id="contenedorTitulo">
+                        <h1 class="u_1649601167 dmNewParagraph" id="1649601167" data-uialign="center"
+                            data-element-type="paragraph" localization_key="googleTranslate.ih9vPk3.30">
+                            <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
+                                <b><span class="font-size-36 lh-1"></span></b>
+                            </font><span style="font-weight: 400;">
+                                <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
+                                    <b><span style="font-weight: 400;"
+                                            class="font-size-36 lh-1 m-specific m-font-size-30">Mi Reserva</span></b>
+                                </font>
+                            </span>
+                        </h1>        
+                        <style>
+                            /* Glyph, by Harry Roberts */
+                            hr.style-eight {
+                                overflow: visible;
+                                /* For IE */
+                                padding: 0;
+                                border: none;
+                                border-top: medium double #333;
+                                color: #333;
+                                text-align: center;
+                            }
+
+                            hr.style-eight:after {
+                                content: "§";
+                                display: inline-block;
+                                position: relative;
+                                top: -0.7em;
+                                font-size: 1.5em;
+                                padding: 0 0.25em;
+                                background: transparent;
+                            }
+                        </style>
+                        <hr class="style-eight">
+                    </div>
+                    <div>
+                        <p>
+                            <strong>Hola Usuario</strong>, Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Illum consectetur dolor nulla
+                            impedit, nobis odio dignissimos, perspiciatis molestias laudantium incidunt veniam
+                            accusamus, beatae deserunt porro pariatur sapiente ut! Veritatis, repellendus?
+                        </p>
+                    </div>
+                    <hr>
+                    <div>
+                        <h3>Datos del Usuario</h3>
+                    </div>
+                    <hr>
+                    <div id="label">
+                        <div>
+                            Nombre:
+                        </div>
+                        <div>
+                            Apellido:
+                        </div>
+                        <div>
+                            Correo Electronico:
+                        </div>
+                        <div>
+                            Telefono:
+                        </div>
+                    </div>
+
+                    <div id="datos">
+                        <div>
+                            Maikol
+                        </div>
+                        <div>
+                            Vitta
+                        </div>
+                        <div>
+                            mvitta@uninorte.edu.co
+                        </div>
+                        <div>
+                            3456702367:
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <h3>Informacion de la Habitacion</h3>
+                    </div>
+                    <hr>
+                    <div id="contenedorInfoHabitacion">
+                        <div id="infoHabitacion">
+                            <div class="seccion">
+                                <strong>Tipo de habitacion</strong>
+                            </div>
+                            <div class="seccion">
+                                Habitacion 1
+                            </div>
+                        </div>
+                        <div id="infoHabitacion">
+                            <div class="seccion">
+                                <strong> Tipo de cama</strong>
+                            </div>
+                            <div class="seccion">
+                                Doble
+                            </div>
+                        </div>
+                        <div id="infoHabitacion">
+                            <div class="seccion">
+                                <strong> Tipo de sabana</strong>
+                            </div>
+                            <div class="seccion">
+                                Estandar
+                            </div>
+                        </div>
+                        <div id="infoHabitacion">
+                            <div class="seccion">
+                                <strong> Servicios</strong>
+                            </div>
+                            <div class="seccion">
+                                Sin Servicio
+                            </div>
+                        </div>
+                        <div id="infoHabitacion">
+                            <div class="seccion">
+                                <strong> Capacidad </strong>
+                            </div>
+                            <div class="seccion">
+                                2
+                            </div>
+                        </div>
+                        <div id="infoHabitacion">
+                            <div class="seccion">
+                                <strong>Precio </strong>
+                            </div>
+                            <div class="seccion">
+                                20.000 COP
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="llegadaSalida">
+                        <div>
+                            <label for="">Fecha de LLegada</label>
+                        </div>
+                        <div>
+                            <input type="datetime">
+                        </div>
+                        <div>
+                            <label for="">Salida</label>
+                        </div>
+                        <div>
+                            <input type="datetime">
+                        </div>
+                    </div>
+
+                    <div>
+                        <hr>
+                        <h3>Totales</h3>
+                        <hr>
+                    </div>
+                    <div id="label">
+                        <div>
+                            Pago:
+                        </div>
+                        <div>
+                            Pago Realizado:
+                        </div>
+                        <div>
+                            Pendiente
+                        </div>
+                    </div>
+
+                    <div id="datos">
+                        <div>
+                            20.000 COP
+                        </div>
+                        <div>
+                            0 COP
+                        </div>
+                        <div>
+                            20.000 COP
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div id="divButton">
+                        <input type="submit" value="Confirmar Reserva" class="btnSend">
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!-- FOOTER -->
+            <div class="footer-grids">
+                <div class="footer one">
+                    <h3>More About Company</h3>
+                    <p> Nemo enim ipsam voluptatem quia
+                        voluptas sit aspernatur aut odit aut fugit,
+                        sed quia consequuntur magni dolores eos qui
+                        ratione voluptatem sequi nesciunt.</p>
+                    <p class="adam">- Patrick Victoria, CEO</p>
+                    <div class="clear"></div>
+                </div>
+                <div class="footer two">
+                    <h3>Keep Connected</h3>
+                    <ul>
+                        <li><a class="fb" href="#"><i></i>Like us on Facebook</a></li>
+                        <li><a class="fb1" href="#"><i></i>Follow us on Twitter</a></li>
+                        <li><a class="fb2" href="#"><i></i>Add us on Instagram</a></li>
+                        <li><a class="fb3" href="#"><i></i>Follow us on Youtube</a></li>
+                    </ul>
+                </div>
+                <div class="footer three">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li>The company name <span>Lorem ipsum dolor,</span>Glasglow Dr 40 Fe 72. </li>
+                        <li>1234567890 </li>
+                        <li><a href="mailto:info@example.com">contact@example.com</a> </li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="copy-right-grids">
+                <div class="copy-left">
+                    <p class="footer-gd">© 2016 Simple Footer Widget. All Rights Reserved | Design by <a
+                            href="https://w3layouts.com/" target="_blank">W3layouts</a></p>
+                </div>
+                <div class="copy-right">
+                    <ul>
+                        <li><a href="#">Company Information</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/dashboard.js' ) }}"></script>
+</body>
+
+</html>
