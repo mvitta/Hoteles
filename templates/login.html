@@ -15,29 +15,49 @@
     <hr>
     <!-- action se coloca la funcion hacia donde se va dirigir despues de validar el formulario -->
     <form action="hacerlogin" method="post" class="formulario">
-      
+
       <div class="div">
         <label><i class="icon"></i></label>
         <input type="text" placeholder="Usuario" id="usuario" name="usuario" required />
       </div>
+
+      <style>
+        .error {
+          font-size: 13px;
+          color: red;
+          text-align: center;
+          margin-top: 10px;
+
+        }
+      </style>
+
+      {% if stdUser %}
+      <div class="error">
+        <ul>
+          <li>{{msgUser}}</li>
+        </ul>
+      </div>
+      {% endif %}
       
       <div>
         <label id="password"><i class="icon"></i></label>
         <input type="password" placeholder="Contraseña" id="contra" name="contra" required />
       </div>
 
+      {% if stdPass %}
+      <div class="error">{{msgPass}}</div>
+      {% endif %}
+
       <div>
         <button type="submit" class="button">Ingresar</button>
         <button type="reset" class="button">Cancelar</button>
       </div>
       <hr>
-      
+
       <div>
         <a href="#" class="pregunta">¿Olvidaste tu contraseña?</a>
       </div>
-      <br>
-      <br>
-      
+
       <div>
         <a href="{{url_for('registro')}}" class="npregunta">¿No tienes cuenta?</a>
       </div>

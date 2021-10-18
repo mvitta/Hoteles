@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request
 import os
 from werkzeug.exceptions import RequestedRangeNotSatisfiable
+from validaciones import isEmailValid, isUsernameValid, isPasswordValid
 
 app = Flask(__name__)
 app.secret_key = os.urandom(34)
@@ -13,7 +14,7 @@ def index():
 
 @app.route('/login')
 def login():
-    return render_template('login.html')
+    return render_template('login.html', msgUser=request.args.get('msgUser'), msgPass=request.args.get('msgPass'), stdUser=request.args.get('stdUser'), stdPass=request.args.get('stdPass'))
 
 
 @app.route('/registro')
@@ -23,21 +24,35 @@ def registro():
 
 @app.route('/hacerlogin', methods=['POST'])
 def hacerlogin():
-    print(request.method)
+    msgUser = ""
+    msgPass = ""
     try:
+        print(request.method)
         if request.method == 'POST':
             us = request.form['usuario']
-            co = int(request.form['contra'])
-            print(us, " - ", co)
-            if us == "admin" and co == 1234:
-                return redirect(url_for('dashboardAdministrador'))
-            elif us == "superadmin" and co == 4321:
-                return redirect(url_for('dashboardSuperAdministrador'))
-            elif us == "user" and co == 12345678:
-                return redirect(url_for('DashboardUsuariofinal'))
+            co = request.form['contra']
+            estadoUser = isUsernameValid(us)
+            estadoPass = isPasswordValid(co)
+            if estadoUser is False:
+                msgUser = "Error de usuario"
+            if estadoPass is False:
+                msgPass = "La Contraseña debe tener al menos una minuscula, una mayuscula, un numero y 8 caracteres"
+            print(estadoUser, estadoPass)
+            if estadoUser and estadoPass:
+                if us == "admin" and co == "Mm12345678":
+                    return redirect(url_for('dashboardAdministrador'))
+                elif us == "superadmin" and co == "Mm12345678":
+                    return redirect(url_for('dashboardSuperAdministrador'))
+                elif us == "user" and co == "Mm12345678":
+                    return redirect(url_for('DashboardUsuariofinal'))
             else:
-                return redirect(url_for('login'))
-    except:
+                # si estadoUser o estadoPass es False
+                return redirect(url_for('login', msgUser=msgUser, msgPass=msgPass, stdUser=estadoUser, stdPass=estadoPass))
+        # si no se cumple el metodo POST
+        return "Hola Mundo"
+    except Exception as error:
+        # si se produce una excepcion
+        print("SE PRODUJO UNA EXCEPCION: ", error)
         return redirect(url_for('index'))
 
 # ----------- ADMINISTRADOR --------------
