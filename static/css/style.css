@@ -81,8 +81,8 @@ html {
 
 .registro {
   margin               : 20px auto;
-  width                : 343px;
-  height               : 500px;
+  width                : 360px;
+  height               : 600px;
   -webkit-border-radius: 8px/7px;
   -moz-border-radius   : 8px/7px;
   border-radius        : 8px/7px;
@@ -129,6 +129,7 @@ hr {
   opacity: 0.3;
 }
 
+input[type=email],
 input[type=text],
 input[type=password] {
   width                : 200px;
