@@ -68,17 +68,17 @@ form.addEventListener('submit', (e) => {
     let apellido = datos[2].value;
     let correo = datos[3].value;
     let contra1 = datos[4].value;
+    let contra2 = datos[5].value;
 
 
-
-    console.log([cedula, nombre, apellido, correo, contra1])
+    console.log([cedula, nombre, apellido, correo, contra1, contra2])
     // reinicio de errores
     errorCedula.innerHTML = "";
     errorNombre.innerHTML = "";
     errorApellido.innerHTML = "";
     errorCorreo.innerHTML = "";
     errorContra1.innerHTML = "";
-
+    errorContra2.innerHTML = "";
     // validaciones
 
     if (!validarCedula(cedula)) {
@@ -115,10 +115,18 @@ form.addEventListener('submit', (e) => {
     else {
         estado += "OK";
     }
+    if (estado == "OKOKOKOKOK") {
+        if (contra1 == contra2) {
+            estado += "OK";
+        }
+        else {
+            errorContra2.innerHTML = "Las Contrasena no coinciden"
+        }
+    }
 
     console.log(estado)
 
-    if (estado == "OKOKOKOKOK") {
+    if (estado == "OKOKOKOKOKOK") {
         console.log([cedula, nombre, apellido, correo, contra1])
         document.getElementsByClassName('msgEnviado')[0].innerHTML = "Enviado";
 
@@ -126,13 +134,5 @@ form.addEventListener('submit', (e) => {
     else {
         e.preventDefault();
     }
-})
 
-
-
-
-
-
-
-
-
+});

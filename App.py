@@ -1,3 +1,4 @@
+from sqlite3.dbapi2 import Cursor
 from flask import Flask, render_template, redirect, url_for, session, request
 from flask import g
 import os
@@ -8,6 +9,21 @@ import sqlite3
 app = Flask(__name__)
 app.secret_key = os.urandom(34)
 DATABASE = "registroUsuarios.db"
+
+# retorna verdadero solo si el usuario existe
+
+
+def usuarioExiste(cedula):
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "SELECT * FROM usuarios WHERE cedula={}".format(cedula)
+    cur.execute(sql)
+    conexion.commit()
+    info = cur.fetchone()
+    cur.close()
+    if info != None:
+        return True
+    return False
 
 
 def conexionBaseDeDatos():
@@ -41,6 +57,7 @@ def login():
 
 @app.route('/registro', methods=['GET', 'POST'])
 def registro():
+
     metodo = request.method
     print(metodo)
     if metodo == "POST":
@@ -53,13 +70,18 @@ def registro():
 
         print(cedula, _nombre, _apellido, _correo, _contra)
 
-        conexion = conexionBaseDeDatos()
-        cur = conexion.cursor()
-        sql = "INSERT OR IGNORE INTO usuarios (cedula, nombre, apellido, correo, contra) VALUES (?, ?, ?, ?, ?)"
-        cur.execute(sql, [cedula, _nombre, _apellido, _correo, _contra])
-        conexion.commit()
-        cur.close()
-        return render_template('registro.html')
+        if usuarioExiste(cedula):
+            # si el usuario muestra error
+            return "El Usuario Existe"
+        else:
+            conexion = conexionBaseDeDatos()
+            cur = conexion.cursor()
+            sql = "INSERT OR IGNORE INTO usuarios (cedula, nombre, apellido, correo, contra) VALUES (?, ?, ?, ?, ?)"
+            cur.execute(sql, [cedula, _nombre, _apellido, _correo, _contra])
+            conexion.commit()
+            cur.close()
+            return render_template('registro.html')
+
     elif metodo == "GET":
         return render_template('registro.html')
 
