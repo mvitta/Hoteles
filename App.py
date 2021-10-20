@@ -16,14 +16,38 @@ DATABASE = "registroUsuarios.db"
 def usuarioExiste(cedula):
     conexion = conexionBaseDeDatos()
     cur = conexion.cursor()
-    sql = "SELECT * FROM usuarios WHERE cedula={}".format(cedula)
-    cur.execute(sql)
+    sql = "SELECT * FROM usuarios WHERE cedula=?"
+    cur.execute(sql, [cedula])
     conexion.commit()
     info = cur.fetchone()
     cur.close()
     if info != None:
         return True
     return False
+
+
+def correoExiste(correo):
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "SELECT * FROM usuarios WHERE correo=?"
+    cur.execute(sql, [correo])
+    conexion.commit()
+    info = cur.fetchone()
+    cur.close()
+    if info != None:
+        return True
+    return False
+
+
+def buscarCredenciales(correo):
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "SELECT correo, contra FROM usuarios WHERE correo=?"
+    cur.execute(sql, [correo])
+    conexion.commit()
+    info = cur.fetchone()
+    cur.close()
+    return info
 
 
 def conexionBaseDeDatos():
@@ -61,7 +85,7 @@ def registro():
     metodo = request.method
     print(metodo)
     if metodo == "POST":
-        print(request.method)
+
         cedula = request.form.get('Cedula')
         _nombre = request.form.get('Nombre')
         _apellido = request.form.get('Apellido')
@@ -70,9 +94,18 @@ def registro():
 
         print(cedula, _nombre, _apellido, _correo, _contra)
 
-        if usuarioExiste(cedula):
+        usuarioBD = usuarioExiste(cedula)
+        correoBD = correoExiste(_correo)
+
+        print(usuarioBD, correoBD)
+
+        if usuarioBD and correoBD:
             # si el usuario muestra error
-            return "El Usuario Existe"
+            return "El Usuario Existe y el correo ya se encuentra registrado"
+        elif usuarioBD:
+            return "ya hay un usuario con ese numer de cedula"
+        elif correoBD:
+            return "el correo ya se encuentra registrado"
         else:
             conexion = conexionBaseDeDatos()
             cur = conexion.cursor()
@@ -88,35 +121,34 @@ def registro():
 
 @app.route('/hacerlogin', methods=['POST'])
 def hacerlogin():
-    msgUser = ""
-    msgPass = ""
     try:
         metodo = request.method
         print(metodo)
         if metodo == 'POST':
             us = request.form['usuario']
             co = request.form['contra']
-            print("DATOS SIN CIFRAR", us, co)
 
-            # estadoUser = True  # isUsernameValid(us)
-            # estadoPass = True  # isPasswordValid(co)
-            # if not estadoUser:
-            #     msgUser = "Error de usuario"
-            # if not estadoPass:
-            #     msgPass = "La Contraseña debe tener al menos una minuscula, una mayuscula, un numero y 8 caracteres"
-            # print(estadoUser, estadoPass)
-            session.clear()
-            if us == "admin" and co == "1234":
+            creden = buscarCredenciales(us)
 
-                print("CONTRASEÑA CIFRADA", co)
-                session['admin'] = us
-                return redirect(url_for('dashboardAdministrador'))
-            elif us == "superadmin" and co == "1234":
-                session['super'] = us
-                return redirect(url_for('dashboardSuperAdministrador'))
-            elif us == "user" and co == "1234":
-                session['usuario'] = us
-                return redirect(url_for('DashboardUsuariofinal'))
+            if creden is None:
+                return "error en la contrasena"
+            else:
+                if check_password_hash(creden[1], co):
+                    session.clear()
+                    session['usuario'] = us
+                    return redirect(url_for('DashboardUsuariofinal'))
+
+            # if us == "admin" and co == "1234":
+
+            #     print("CONTRASEÑA CIFRADA", co)
+            #     session['admin'] = us
+            #     return redirect(url_for('dashboardAdministrador'))
+            # elif us == "superadmin" and co == "1234":
+            #     session['super'] = us
+            #     return redirect(url_for('dashboardSuperAdministrador'))
+            # elif us == "user" and co == "1234":
+            #     session['usuario'] = us
+            #     return redirect(url_for('DashboardUsuariofinal'))
         else:
             return "bad request"
 
