@@ -233,22 +233,6 @@ p.adam {
 	display: block;
 }
 
-.footer.three ul li:nth-child(1) {
-	background  : url('../images/icon2.png') no-repeat 0px 6px;
-	padding-left: 38px;
-}
-
-.footer.three ul li:nth-child(2) {
-	background  : url('../images/icon3.png') no-repeat 0px 6px;
-	padding-left: 38px;
-}
-
-.footer.three ul li a {
-	background  : url('../images/icon1.png') no-repeat 0px 6px;
-	padding-left: 38px;
-	display     : block;
-	color       : #908F8F;
-}
 
 .copy-right-grids {
 	padding   : 20px 20px;
@@ -278,26 +262,6 @@ p.adam {
 
 .copy-right ul li:nth-child(1) {
 	border: none;
-}
-
-.footer.two ul li a.fb:hover {
-	background: url('../images/social3hover.png') no-repeat 0px 4px;
-}
-
-.footer.two ul li a.fb1:hover {
-	background: url('../images/social2hover.png') no-repeat 0px 4px;
-}
-
-.footer.two ul li a.fb2:hover {
-	background: url('../images/social4hover.png') no-repeat 0px 4px;
-}
-
-.footer.two ul li a.fb3:hover {
-	background: url('../images/social5hover.png') no-repeat 0px 4px;
-}
-
-.footer.two ul li a.fb4:hover {
-	background: url('../images/social1hover.png') no-repeat 0px 4px;
 }
 
 .footer.two ul li a:hover,

@@ -14,6 +14,17 @@
         href="/static/css/material-design-iconic-font/css/material-design-iconic-font.css">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_footer.css') }}">
     <title>Buscar habitacion</title>
+    <style>
+        .mensajeError {
+            font-size: 19 px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            margin-top: 0px;
+            font-weight: bold;
+
+
+        }
+    </style>
 </head>
 
 <body>
@@ -53,7 +64,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/cerrarSesion">
                         <span class="name_icon"><i class="zmdi zmdi-power zmdi-hc-2x"></i></span>
                         <span class="name_title">Cerrar Sesion</span>
                     </a>
@@ -77,8 +88,7 @@
                 <!--MAIN-container-->
                 <h2>Formulario de reserva</h2>
                 <div class="container">
-                    <form action="" enctype="multipart/form-data" method="post" name="formulario_html5"
-                        autocomplete="off" id="formReservas">
+                    <form action="" method="post" id="formulario_html5" autocomplete="off">
                         <label for="nombre">Nombre</label></br>
                         <input type="text" name="nombre" id="nombre" class="cajas"></br>
 
@@ -118,10 +128,16 @@
                         </select></br>
 
                         <label for="estudios">Nivel de estudios</label> </br>
-                        <input type="range" id="estudios" name="estudios"></br>
-                        <input type="submit" value="enviar" name="submit" class="btn">
+                        <input type="range" id="estudios" name="estudios" class="cajas"></br>
+                        <!-- <input type="submit" value="enviar" name="submit" class="btn"> -->
+                        <div>
+                            <button type="submit" class="btn">Enviar</button>
+                        </div>
 
                     </form>
+                </div>
+                <div id="msgError" class="mensajeError">
+
                 </div>
             </div>
             <!-- FOOTER -->
@@ -171,18 +187,13 @@
         </div>
     </div>
 
+    <script type="text/javascript" src="{{ url_for('static', filename='js/dashboard.js' ) }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/validarReserva.js' ) }}"></script>
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q81/x+965DzO0rT7abk41JStQIAqvgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
 
 
-<script type="text/javascript" src="{{ url_for('static', filename='js/dashboard.js' ) }}"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#example').DataTable();
-    });
-</script>
+
+
 
 
 
