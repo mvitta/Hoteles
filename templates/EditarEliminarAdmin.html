@@ -15,6 +15,21 @@
         href="/static/css/material-design-iconic-font/css/material-design-iconic-font.css">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_footer.css') }}">
     <title>Editar o Eliminar</title>
+    <style>
+        .row-selected {
+            background: yellow;
+        }
+
+
+        .other-clic {
+            background: rgb(13, 0, 128) !important;
+            color: white;
+        }
+
+        tr {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -164,40 +179,45 @@
                     <br>
                 </section>
                 <div id="buscar">
-                    <table id="example" class="display" style="width:80%">
-                        <thead>
-                            <tr>
-                                <th>Habitaciones</th>
-                                <th>Tipo de cama</th>
-                                <th>Tipo de sabana</th>
-                                <th>Servicios</th>
-                                <th>capacidad</th>
-                                <th>Precio</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for i in range(1, 101) -%}
-                            <tr>
-                                <td>habitacion {{i}}</td>
-                                <td>doble</td>
-                                <td>Estandar</td>
-                                <td>sin servicio</td>
-                                <td>2</td>
-                                <td>$320,800</td>
-                            </tr>
-                            {% endfor -%}
-                        </tbody>
-                    </table>
-                </div>
-                <br>
-                <div id="divBotones">
-                    <input type="button" value="Editar habitacion" class="">
-                    <input type="button" value="Eliminar Habitacion" class="">
-                    <input type="button" value="ver comentarios" class="">
-                </div>
-                <br> <br>
+                    <form action="" method="post">
+                        <table id="example" class="display" style="width:80%">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>ID</th>
+                                    <th>Habitaciones</th>
+                                    <th>Tipo de cama</th>
+                                    <th>Tipo de sabana</th>
+                                    <th>Servicios</th>
+                                    <th>capacidad</th>
+                                    <th>Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in datos %}
+                                <tr>
+                                    <td><input type="radio" name="selecHab"></td>
+                                    <td>{{i[2]}}</td>
+                                    <td>{{i[0]}}</td>
+                                    <td>{{i[3]}}</td>
+                                    <td>{{i[1]}}</td>
+                                    <td>{{i[4]}}</td>
+                                    <td>{{i[5]}}</td>
+                                    <td>{{i[6]}}</td>
+                                </tr>
 
-
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <br>
+                        <br><br>
+                        <div id="divBotones">
+                            <input type="button" value="Editar habitacion" class="">
+                            <input type="button" value="Eliminar Habitacion" class="">
+                            <input type="button" value="ver comentarios" class="">
+                        </div>
+                    </form>
+                </div>
             </div>
             <!-- FOOTER -->
             <div class="footer-grids">
@@ -250,10 +270,11 @@
     </div>
 
 </body>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q81/x+965DzO0rT7abk41JStQIAqvgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- <script type="text/javascript" charset="utf8" src="/static/js/dataTables.js"></script> -->
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript" charset="utf8" src="/static/js/jquery.dataTables.min.js"></script>
@@ -262,6 +283,26 @@
     $(document).ready(function () {
         $('#example').DataTable();
     });
+</script>
+<script>
+    $(function () {
+        $('tr').click(function (e) {
+            if ($(this).hasClass('row-selected')) {
+                $(this).addClass('other-clic')
+            } else {
+                cleanTr()
+                $(this).addClass('row-selected')
+            }
+        })
+
+
+        function cleanTr() {
+            $('.row-selected').each(function (index, element) {
+                $(element).removeClass('row-selected')
+                $(element).removeClass('other-clic')
+            })
+        }
+    })
 </script>
 
 

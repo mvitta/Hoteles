@@ -15,6 +15,21 @@
         href="/static/css/material-design-iconic-font/css/material-design-iconic-font.css">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_footer.css') }}">
     <title>Buscar habitacion</title>
+    <style>
+        .row-selected {
+            background: yellow;
+        }
+
+
+        .other-clic {
+            background: rgb(13, 0, 128) !important;
+            color: white;
+        }
+
+        tr {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -78,8 +93,7 @@
                         </font><span style="font-weight: 400;">
                             <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
                                 <b><span style="font-weight: 400;"
-                                        class="font-size-36 lh-1 m-specific m-font-size-30">Buscar Habitaciones
-                                        Disponibles</span></b>
+                                        class="font-size-36 lh-1 m-specific m-font-size-30">Habitaciones Disponibles</span></b>
                             </font>
                         </span>
                     </h1>
@@ -111,149 +125,46 @@
                     <br>
                 </section>
                 <div id="buscar">
-                    <table id="example" class="display" style="width:80%">
-                        <thead>
-                            <tr>
-                                <th>Habitaciones</th>
-                                <th>Tipo de cama</th>
-                                <th>Tipo de sabana</th>
-                                <th>Servicios</th>
-                                <th>capacidad</th>
-                                <th>Precio</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>habitacion 1</td>
-                                <td>doble</td>
-                                <td>Estandar</td>
-                                <td>sin servicio</td>
-                                <td>2</td>
-                                <td>$320,800</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 2</td>
-                                <td>individual</td>
-                                <td>junior</td>
-                                <td>tv con cable</td>
-                                <td>1</td>
-                                <td>$170,750</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 3</td>
-                                <td>individual</td>
-                                <td>basica</td>
-                                <td>sin servicio</td>
-                                <td>1</td>
-                                <td>$86,000</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 4</td>
-                                <td>individual</td>
-                                <td>senior</td>
-                                <td>servicio al cuarto</td>
-                                <td>1</td>
-                                <td>$433,060</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 5</td>
-                                <td>grupal</td>
-                                <td>estandar</td>
-                                <td>sin servicio</td>
-                                <td>4</td>
-                                <td>$583,000</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 1</td>
-                                <td>doble</td>
-                                <td>Estandar</td>
-                                <td>sin servicio</td>
-                                <td>2</td>
-                                <td>$320,800</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 2</td>
-                                <td>individual</td>
-                                <td>junior</td>
-                                <td>tv con cable</td>
-                                <td>1</td>
-                                <td>$170,750</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 3</td>
-                                <td>individual</td>
-                                <td>basica</td>
-                                <td>sin servicio</td>
-                                <td>1</td>
-                                <td>$86,000</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 4</td>
-                                <td>individual</td>
-                                <td>senior</td>
-                                <td>servicio al cuarto</td>
-                                <td>1</td>
-                                <td>$433,060</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 5</td>
-                                <td>grupal</td>
-                                <td>estandar</td>
-                                <td>sin servicio</td>
-                                <td>4</td>
-                                <td>$583,000</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 1</td>
-                                <td>doble</td>
-                                <td>Estandar</td>
-                                <td>sin servicio</td>
-                                <td>2</td>
-                                <td>$320,800</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 2</td>
-                                <td>individual</td>
-                                <td>junior</td>
-                                <td>tv con cable</td>
-                                <td>1</td>
-                                <td>$170,750</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 3</td>
-                                <td>individual</td>
-                                <td>basica</td>
-                                <td>sin servicio</td>
-                                <td>1</td>
-                                <td>$86,000</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 4</td>
-                                <td>individual</td>
-                                <td>senior</td>
-                                <td>servicio al cuarto</td>
-                                <td>1</td>
-                                <td>$433,060</td>
-                            </tr>
-                            <tr>
-                                <td>habitacion 5</td>
-                                <td>grupal</td>
-                                <td>estandar</td>
-                                <td>sin servicio</td>
-                                <td>4</td>
-                                <td>$583,000</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <form action="" method="post">
+                        <table id="example" class="display" style="width:80%">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>ID</th>
+                                    <th>Habitaciones</th>
+                                    <th>Tipo de cama</th>
+                                    <th>Tipo de sabana</th>
+                                    <th>Servicios</th>
+                                    <th>capacidad</th>
+                                    <th>Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in datos %}
+                                <tr>
+                                    <td><input type="radio" name="selecHab"></td>
+                                    <td>{{i[2]}}</td>
+                                    <td>{{i[0]}}</td>
+                                    <td>{{i[3]}}</td>
+                                    <td>{{i[1]}}</td>
+                                    <td>{{i[4]}}</td>
+                                    <td>{{i[5]}}</td>
+                                    <td>{{i[6]}}</td>
+                                </tr>
+
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <br>
+                        <br><br>
+                        <div id="divBotones">
+                            <input type="button" value="Editar habitacion" class="">
+                            <input type="button" value="Eliminar Habitacion" class="">
+                            <input type="button" value="ver comentarios" class="">
+                        </div>
+                    </form>
                 </div>
                 <br>
-                <div id="divBotones">
-                    <input type="button" value="Editar habitacion" class="btnSend">
-                    <input type="button" value="Realizar reserva" class="btnSend">
-                    <input type="button" value="ver comentarios" class="btnSend">
-                </div>
-                <br> <br>
-
 
             </div>
             <!-- FOOTER -->
@@ -311,6 +222,7 @@
 
 
 <!-- <script type="text/javascript" charset="utf8" src="/static/js/dataTables.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript" charset="utf8" src="/static/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/dashboard.js' ) }}"></script>
@@ -319,7 +231,26 @@
         $('#example').DataTable();
     });
 </script>
+<script>
+    $(function () {
+        $('tr').click(function (e) {
+            if ($(this).hasClass('row-selected')) {
+                $(this).addClass('other-clic')
+            } else {
+                cleanTr()
+                $(this).addClass('row-selected')
+            }
+        })
 
+
+        function cleanTr() {
+            $('.row-selected').each(function (index, element) {
+                $(element).removeClass('row-selected')
+                $(element).removeClass('other-clic')
+            })
+        }
+    })
+</script>
 
 
 
