@@ -125,7 +125,7 @@
                     <br>
                 </section>
                 <div id="buscar">
-                    <form action="" method="post">
+                    <form action="buscarHabitacion" method="get">
                         <table id="example" class="display" style="width:80%">
                             <thead>
                                 <tr>
@@ -149,7 +149,6 @@
                                     <td>{{i[5]}}</td>
                                     <td>{{i[6]}}</td>
                                 </tr>
-
                                 {% endfor %}
                             </tbody>
                         </table>
@@ -159,6 +158,7 @@
                             <input type="button" value="Editar habitacion" class="">
                             <input type="button" value="Eliminar Habitacion" class="">
                             <input type="button" value="ver comentarios" class="">
+                            <button type="submit">Crear Reserva</button>
                         </div>
                     </form>
                 </div>

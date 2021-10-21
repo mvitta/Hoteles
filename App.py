@@ -9,7 +9,9 @@ import sqlite3
 app = Flask(__name__)
 app.secret_key = os.urandom(34)
 DATABASE_USUARIO = "hotel.db"
-clave = None
+claveAdmin = None
+Habitaciones = None
+idHab = None
 
 
 def conexionBaseDeDatos():
@@ -43,6 +45,26 @@ def correoExiste(correo):
     if info != None:
         return True
     return False
+
+
+def eliminarRegistro(idHabitacion):
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "DELETE FROM habitaciones WHERE id_habitacion=?"
+    cur.execute(sql, [idHabitacion])
+    conexion.commit()
+    info = cur.fetchone()
+    cur.close()
+
+
+def editarRegistro(idHabitacion, tipoHab, tipoCama, tipoSabana, numeroCamas, servicios):
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "UPDATE habitaciones SET tipo_habitacion=?, tipo_Cama=?, sabanas=?, numero_camas=?, servicios=? WHERE id_habitacion=?"
+    cur.execute(sql, [tipoHab, tipoCama, tipoSabana,
+                numeroCamas, servicios, idHabitacion])
+    conexion.commit()
+    cur.close()
 
 
 def buscarCredencialesUsuario(correo):
@@ -100,6 +122,13 @@ def numeroDeRegistro():
     return filas
 
 
+def obetenerIdHabitaciones():
+    idHabitaciones = []
+    for i in Habitaciones:
+        idHabitaciones.append(i[0])
+    return idHabitaciones
+
+
 @app.teardown_appcontext
 def cerrarConexion(exception):
     db = getattr(g, '_database_USUARIO', None)
@@ -114,11 +143,6 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # metodo = request.method
-    # msgUser = request.args.get('msgUser')
-    # msgPass = request.args.get('msgPass')
-    # stdUser = request.args.get('stdUser')
-    # stdPass = request.args.get('stdPass')
     return render_template('login.html')
 
 
@@ -157,7 +181,7 @@ def registro():
 
 @app.route('/hacerlogin', methods=['POST'])
 def hacerlogin():
-    global clave
+    global claveAdmin, Habitaciones, idHab
     try:
         metodo = request.method
         if metodo == 'POST':
@@ -173,6 +197,7 @@ def hacerlogin():
                     if check_password_hash(creden[1], co):
                         session.clear()
                         session['usuario'] = us
+                        Habitaciones = listaDeHabitaciones()
                         return redirect(url_for('DashboardUsuariofinal'))
             elif valida == "@admin.com":
                 creden = buscarCredencialesAdmin(us)
@@ -182,7 +207,9 @@ def hacerlogin():
                     if check_password_hash(creden[2], co):
                         session.clear()
                         session['admin'] = us
-                        clave = creden[0]
+                        claveAdmin = creden[0]
+                        Habitaciones = listaDeHabitaciones()
+                        idHab = obetenerIdHabitaciones()
                         return redirect(url_for('dashboardAdministrador'))
             elif valida == "@superadmin.com":
                 creden = buscarCredencialesSuperAdmin(us)
@@ -192,6 +219,8 @@ def hacerlogin():
                     if check_password_hash(creden[1], co):
                         session.clear()
                         session['super'] = us
+                        Habitaciones = listaDeHabitaciones()
+                        obetenerIdHabitaciones()
                         return redirect(url_for('dashboardSuperAdministrador'))
             else:
                 return "El correo no es valido para iniciar sersion"
@@ -225,16 +254,14 @@ def crearHabitacionAdmin():
         numeroCamas = request.form.get('numeroCamas')
         servicios = request.form.get('servicios')
         print(habitacion, tipoHabitacion, sabanas, numeroCamas, servicios)
-
-        print(clave)
+        print(claveAdmin)
         conexion = conexionBaseDeDatos()
         cur = conexion.cursor()
         sql = "INSERT INTO habitaciones (id_administrador, tipo_habitacion, tipo_cama, sabanas, numero_camas, servicios) VALUES (?, ?, ?, ?, ?, ?)"
         cur.execute(
-            sql, [clave, habitacion, tipoHabitacion, sabanas, numeroCamas, servicios])
+            sql, [claveAdmin, habitacion, tipoHabitacion, sabanas, numeroCamas, servicios])
         conexion.commit()
         cur.close()
-
         return redirect(url_for('crearHabitacionAdmin'))
     else:
         return render_template('CrearHabitacionAdmin.html')
@@ -242,16 +269,44 @@ def crearHabitacionAdmin():
 
 @app.route('/dashboardAdministrador/editareliminar', methods=['GET', 'POST'])
 def EditarEliminarAdmin():
+    global Habitaciones, idHab
+    seccionEditar = False
     metodo = request.method
+    valorSelect = request.form.get('_idHabi')
     if metodo == "POST":
-        # en esta seccion se creara una consula para editar o eliminar una habitacion
-        pass
-    if metodo == "GET":
-        datos = listaDeHabitaciones()
-        return render_template('EditarEliminarAdmin.html', datos=datos, filas=numeroDeRegistro())
 
+        if request.form.get('btn') == "Ir a editar":
+            seccionEditar = True
+
+        elif request.form.get('btn') == "Eliminar":
+            eliminarRegistro(valorSelect)
+            Habitaciones = listaDeHabitaciones()
+            idHab = obetenerIdHabitaciones()
+        else:
+            # solo ingresa aqui cuando se haga una nueva peticion post y no se presionen ninguno de los botones anteriores
+            # cuando se habra esta seccion los botones ir a editar y eliminar deben bloquearse
+            editarHabitacion = request.form.get('habitacion')
+            editarTipoHabitacion = request.form.get('tipoHabitacion')
+            editarSabanas = request.form.get('sabanas')
+            editarNumeroCamas = request.form.get('numeroCamas')
+            editarServicios = request.form.get('servicios')
+            print(editarHabitacion)
+            print(valorSelect)
+            editarRegistro(valorSelect, editarHabitacion, editarTipoHabitacion,
+                           editarSabanas, editarNumeroCamas, editarServicios)
+            Habitaciones = listaDeHabitaciones()
+            idHab = obetenerIdHabitaciones()
+        return render_template('EditarEliminarAdmin.html', datos=Habitaciones, idHab=idHab, editar=seccionEditar)
+    if metodo == "GET":
+        return render_template('EditarEliminarAdmin.html', datos=Habitaciones, idHab=idHab, editar=seccionEditar)
+
+
+@app.route('/dashboardAdministrador/editarHabitacion', methods=['GET', 'POST'])
+def EditarEliminar():
+    pass
 
 # ----------- USUARIO FINAL --------------
+
 
 @app.route('/DashboardUsuariofinal')
 def DashboardUsuariofinal():
@@ -263,8 +318,8 @@ def DashboardUsuariofinal():
 
 @app.route('/DashboardUsuariofinal/buscarHabitacion')
 def buscarHabitacion():
-    datos = listaDeHabitaciones()
-    return render_template('BuscarHabitacion.html', datos=datos, filas=numeroDeRegistro())
+    hab = request.args.get('selecHab')
+    return render_template('BuscarHabitacion.html', datos=Habitaciones, filas=numeroDeRegistro())
 
 
 @app.route('/DashboardUsuariofinal/reserva', methods=['GET', 'POST'])
@@ -301,11 +356,10 @@ def crearHabitacionSuper():
 def EditarEliminarSuper():
     metodo = request.method
     if metodo == "POST":
-        # en esta seccion se creara una consula para editar o eliminar una habitacion
+        # en esta seccion se creara una consulta para editar o eliminar una habitacion
         pass
     if metodo == "GET":
-        datos = listaDeHabitaciones()
-    return render_template('EditarEliminarSuperAdmin.html', datos=datos, filas=numeroDeRegistro())
+        return render_template('EditarEliminarSuperAdmin.html', datos=Habitaciones, filas=numeroDeRegistro())
 
 
 @app.route('/cerrarSesion')

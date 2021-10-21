@@ -180,23 +180,21 @@
                 </section>
                 <div id="buscar">
                     <form action="" method="post">
-                        <table id="example" class="display" style="width:80%">
+                        <table id="example" class="display" style="width:80%" name>
                             <thead>
                                 <tr>
-                                    <th></th>
                                     <th>ID Habitacion</th>
                                     <th>Tipo de Habitacion</th>
                                     <th>Tipo de cama</th>
                                     <th>Tipo de sabana</th>
                                     <th>Numero de camas</th>
                                     <th>Servicios</th>
-                                    
+
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for i in datos %}
                                 <tr>
-                                    <td><input type="radio" name="selecHab"></td>
                                     <td>{{i[0]}}</td>
                                     <td>{{i[2]}}</td>
                                     <td>{{i[3]}}</td>
@@ -204,18 +202,111 @@
                                     <td>{{i[5]}}</td>
                                     <td>{{i[6]}}</td>
                                 </tr>
-
                                 {% endfor %}
                             </tbody>
                         </table>
+
                         <br>
-                        <br><br>
+                        <div style="text-align: center;">
+                            <label for="">Escoger ID de la Habitacion que desea editar o eliminar</label>
+                            <select name="_idHabi">
+                                {% for i in idHab %}
+                                <option>&nbsp;</option>
+                                <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br>
                         <div id="divBotones">
-                            <input type="button" value="Editar habitacion" class="">
-                            <input type="button" value="Eliminar Habitacion" class="">
-                            <input type="button" value="ver comentarios" class="">
+                            <input type="submit" value="Ir a editar" class="" , name="btn">
+                            <input type="submit" value="Eliminar" class="" name="btn">
+                            <input type="button" value="comentarios" class="">
                         </div>
                     </form>
+                    {% if editar %}
+                    <div style="display: flex; justify-content: center; text-align: center;">
+                        <div>
+                            <form action="" class="form_habitacion" method="post">
+                                <h2>Editar Habitacion</h2>
+                                <div class="user_info">
+                                    <div style="border: 1px solid red; width: 100px;">
+                                        <p style="border: 1px solid black; width: fit-content;" class="text-uppercase">
+                                            Tipo de habitacion
+                                        </p>
+                                    </div>
+                                    <div class="form-wrap">
+                                        <!--Select 1-->
+                                        <div class="formwrap">
+                                            <select class="selectes" data-placeholder="Habitacion estandar" required
+                                                name="habitacion">
+                                                <option></option>
+                                                <option value="Habitacion estandar">Habitacion estandar</option>
+                                                <option value="Habitacion junior">Habitacion junior</option>
+                                                <option value="Habitación senior">Habitación senior</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <p class="text-uppercase">Tipo de cama</p>
+                                    <div class="form-wrap">
+                                        <!--Select 2-->
+                                        <div class="formwrap">
+                                            <select class="selectes" data-placeholder="Habitacion Doble"
+                                                name="tipoHabitacion" required>
+                                                <option></option>
+                                                <option value="Habitacion Doble">Habitacion Doble</option>
+                                                <option value="Habitación doble de uso individual ">Habitación doble de
+                                                    uso
+                                                    individual </option>
+                                                <option value="Habitación senior">Habitación triple</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <p class="text-uppercase">Sabanas</p>
+                                    <div class="form-wrap">
+                                        <!--Select 2-->
+                                        <div class="formwrap">
+                                            <select class="selectes" data-placeholder="Algodon" required name="sabanas">
+                                                <option></option>
+                                                <option value="Algodon">Algodon</option>
+                                                <option value="Estandar">Estandar</option>
+                                                <option value="Seda">Seda</option>
+                                                <option value="Bambu">Bambu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <p class="text-uppercase">Numero de camas</p>
+                                    <div class="formwrap">
+                                        <!--Select 2-->
+                                        <select class="selectes" data-placeholder="1" required name="numeroCamas">
+                                            <option></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <p class="text-uppercase">Servicios</p>
+                                <div class="formwrap">
+                                    <!--Select 2-->
+                                    <select class="selectes" data-placeholder="Tv con cable" required name="servicios">
+                                        <option></option>
+                                        <option value="Tv con cable">Tv con cable</option>
+                                        <option value="Servicio al cuarto">Servicio al cuarto</option>
+                                        <option value="Aire acondicionado">Aire acondicionado</option>
+                                        <option value="Ducha caliente">Ducha caliente</option>
+                                    </select>
+                                </div>
+                                <div id="botones">
+                                    <button type="submit" id="btnSed">Editar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
             <!-- FOOTER -->
