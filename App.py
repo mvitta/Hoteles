@@ -9,6 +9,7 @@ import sqlite3
 app = Flask(__name__)
 app.secret_key = os.urandom(34)
 DATABASE_USUARIO = "hotel.db"
+clave = None
 
 
 def conexionBaseDeDatos():
@@ -156,6 +157,7 @@ def registro():
 
 @app.route('/hacerlogin', methods=['POST'])
 def hacerlogin():
+    global clave
     try:
         metodo = request.method
         if metodo == 'POST':
@@ -180,7 +182,7 @@ def hacerlogin():
                     if check_password_hash(creden[2], co):
                         session.clear()
                         session['admin'] = us
-                        session['id'] = creden[0]
+                        clave = creden[0]
                         return redirect(url_for('dashboardAdministrador'))
             elif valida == "@superadmin.com":
                 creden = buscarCredencialesSuperAdmin(us)
@@ -223,13 +225,13 @@ def crearHabitacionAdmin():
         numeroCamas = request.form.get('numeroCamas')
         servicios = request.form.get('servicios')
         print(habitacion, tipoHabitacion, sabanas, numeroCamas, servicios)
-        # idAdmin = session['id']
-        # print(idAdmin)
+
+        print(clave)
         conexion = conexionBaseDeDatos()
         cur = conexion.cursor()
         sql = "INSERT INTO habitaciones (id_administrador, tipo_habitacion, tipo_cama, sabanas, numero_camas, servicios) VALUES (?, ?, ?, ?, ?, ?)"
         cur.execute(
-            sql, [1, habitacion, tipoHabitacion, sabanas, numeroCamas, servicios])
+            sql, [clave, habitacion, tipoHabitacion, sabanas, numeroCamas, servicios])
         conexion.commit()
         cur.close()
 
@@ -242,6 +244,7 @@ def crearHabitacionAdmin():
 def EditarEliminarAdmin():
     metodo = request.method
     if metodo == "POST":
+        # en esta seccion se creara una consula para editar o eliminar una habitacion
         pass
     if metodo == "GET":
         datos = listaDeHabitaciones()
@@ -296,7 +299,13 @@ def crearHabitacionSuper():
 
 @app.route('/dashboardSuperAdministrador/editareliminar')
 def EditarEliminarSuper():
-    return render_template('EditarEliminarSuperAdmin.html')
+    metodo = request.method
+    if metodo == "POST":
+        # en esta seccion se creara una consula para editar o eliminar una habitacion
+        pass
+    if metodo == "GET":
+        datos = listaDeHabitaciones()
+    return render_template('EditarEliminarSuperAdmin.html', datos=datos, filas=numeroDeRegistro())
 
 
 @app.route('/cerrarSesion')

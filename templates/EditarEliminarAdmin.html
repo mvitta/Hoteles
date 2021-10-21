@@ -184,23 +184,22 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>ID</th>
-                                    <th>Habitaciones</th>
+                                    <th>ID Habitacion</th>
+                                    <th>Tipo de Habitacion</th>
                                     <th>Tipo de cama</th>
                                     <th>Tipo de sabana</th>
+                                    <th>Numero de camas</th>
                                     <th>Servicios</th>
-                                    <th>capacidad</th>
-                                    <th>Precio</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for i in datos %}
                                 <tr>
                                     <td><input type="radio" name="selecHab"></td>
-                                    <td>{{i[2]}}</td>
                                     <td>{{i[0]}}</td>
+                                    <td>{{i[2]}}</td>
                                     <td>{{i[3]}}</td>
-                                    <td>{{i[1]}}</td>
                                     <td>{{i[4]}}</td>
                                     <td>{{i[5]}}</td>
                                     <td>{{i[6]}}</td>

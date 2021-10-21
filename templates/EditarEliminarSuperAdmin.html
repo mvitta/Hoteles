@@ -169,25 +169,27 @@
                     <table id="example" class="display" style="width:80%">
                         <thead>
                             <tr>
-                                <th>Habitaciones</th>
+                                <th></th>
+                                <th>ID Habitacion</th>
+                                <th>Tipo de Habitacion</th>
                                 <th>Tipo de cama</th>
                                 <th>Tipo de sabana</th>
+                                <th>Numero de camas</th>
                                 <th>Servicios</th>
-                                <th>capacidad</th>
-                                <th>Precio</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for i in range(1, 101) -%}
+                            {% for i in datos %}
                             <tr>
-                                <td>habitacion {{i}}</td>
-                                <td>doble</td>
-                                <td>Estandar</td>
-                                <td>sin servicio</td>
-                                <td>2</td>
-                                <td>$320,800</td>
+                                <td><input type="radio" name="selecHab"></td>
+                                <td>{{i[0]}}</td>
+                                <td>{{i[2]}}</td>
+                                <td>{{i[3]}}</td>
+                                <td>{{i[4]}}</td>
+                                <td>{{i[5]}}</td>
+                                <td>{{i[6]}}</td>
                             </tr>
-                            {% endfor -%}
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
