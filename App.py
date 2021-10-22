@@ -273,16 +273,20 @@ def EditarEliminarAdmin():
     seccionEditar = False
     metodo = request.method
     valorSelect = request.form.get('_idHabi')
+    
+    print(metodo)
+    print(valorSelect)
     if metodo == "POST":
 
         if request.form.get('btn') == "Ir a editar":
             seccionEditar = True
+           
 
         elif request.form.get('btn') == "Eliminar":
             eliminarRegistro(valorSelect)
             Habitaciones = listaDeHabitaciones()
             idHab = obetenerIdHabitaciones()
-        else:
+        elif request.form.get('btn') == "editar":
             # solo ingresa aqui cuando se haga una nueva peticion post y no se presionen ninguno de los botones anteriores
             # cuando se habra esta seccion los botones ir a editar y eliminar deben bloquearse
             editarHabitacion = request.form.get('habitacion')
@@ -291,14 +295,20 @@ def EditarEliminarAdmin():
             editarNumeroCamas = request.form.get('numeroCamas')
             editarServicios = request.form.get('servicios')
             print(editarHabitacion)
-            print(valorSelect)
+            print(editarTipoHabitacion)
+            print(editarSabanas)
+            print(editarNumeroCamas)
+            print(editarServicios)
             editarRegistro(valorSelect, editarHabitacion, editarTipoHabitacion,
                            editarSabanas, editarNumeroCamas, editarServicios)
             Habitaciones = listaDeHabitaciones()
             idHab = obetenerIdHabitaciones()
+        else:
+            print("NO ENTRO A NINGUN BLOQUE")
         return render_template('EditarEliminarAdmin.html', datos=Habitaciones, idHab=idHab, editar=seccionEditar)
     if metodo == "GET":
         return render_template('EditarEliminarAdmin.html', datos=Habitaciones, idHab=idHab, editar=seccionEditar)
+    return render_template('EditarEliminarAdmin.html', datos=Habitaciones, idHab=idHab, editar=seccionEditar)
 
 
 @app.route('/dashboardAdministrador/editarHabitacion', methods=['GET', 'POST'])

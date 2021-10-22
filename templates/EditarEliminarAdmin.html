@@ -207,15 +207,7 @@
                         </table>
 
                         <br>
-                        <div style="text-align: center;">
-                            <label for="">Escoger ID de la Habitacion que desea editar o eliminar</label>
-                            <select name="_idHabi">
-                                {% for i in idHab %}
-                                <option>&nbsp;</option>
-                                <option>{{i}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
+
                         <br>
                         <div id="divBotones">
                             <input type="submit" value="Ir a editar" class="" , name="btn">
@@ -224,73 +216,110 @@
                         </div>
                     </form>
                     {% if editar %}
+                    <br><br>
+
                     <div style="display: flex; justify-content: center; text-align: center;">
                         <div>
+                            <h1 class="u_1649601167 dmNewParagraph" id="1649601167" data-uialign="center"
+                                data-element-type="paragraph" localization_key="googleTranslate.ih9vPk3.30">
+                                <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
+                                    <b><span class="font-size-36 lh-1"></span></b>
+                                </font><span style="font-weight: 400;">
+                                    <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
+                                        <b><span style="font-weight: 400;"
+                                                class="font-size-36 lh-1 m-specific m-font-size-30">Editar</span></b>
+                                    </font>
+                                </span>
+                            </h1>
+                            <br><br>
+                            <style>
+                                /* Glyph, by Harry Roberts */
+                                hr.style-eight {
+                                    overflow: visible;
+                                    /* For IE */
+                                    padding: 0;
+                                    border: none;
+                                    border-top: medium double #333;
+                                    color: #333;
+                                    text-align: center;
+                                }
+
+                                hr.style-eight:after {
+                                    content: "§";
+                                    display: inline-block;
+                                    position: relative;
+                                    top: -0.7em;
+                                    font-size: 1.5em;
+                                    padding: 0 0.25em;
+                                    background: white;
+                                }
+                            </style>
+                            <hr class="style-eight">
                             <form action="" class="form_habitacion" method="post">
-                                <h2>Editar Habitacion</h2>
-                                <div class="user_info">
-                                    <div style="border: 1px solid red; width: 100px;">
-                                        <p style="border: 1px solid black; width: fit-content;" class="text-uppercase">
-                                            Tipo de habitacion
-                                        </p>
-                                    </div>
-                                    <div class="form-wrap">
-                                        <!--Select 1-->
-                                        <div class="formwrap">
-                                            <select class="selectes" data-placeholder="Habitacion estandar" required
-                                                name="habitacion">
-                                                <option></option>
-                                                <option value="Habitacion estandar">Habitacion estandar</option>
-                                                <option value="Habitacion junior">Habitacion junior</option>
-                                                <option value="Habitación senior">Habitación senior</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <p class="text-uppercase">Tipo de cama</p>
-                                    <div class="form-wrap">
-                                        <!--Select 2-->
-                                        <div class="formwrap">
-                                            <select class="selectes" data-placeholder="Habitacion Doble"
-                                                name="tipoHabitacion" required>
-                                                <option></option>
-                                                <option value="Habitacion Doble">Habitacion Doble</option>
-                                                <option value="Habitación doble de uso individual ">Habitación doble de
-                                                    uso
-                                                    individual </option>
-                                                <option value="Habitación senior">Habitación triple</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <p class="text-uppercase">Sabanas</p>
-                                    <div class="form-wrap">
-                                        <!--Select 2-->
-                                        <div class="formwrap">
-                                            <select class="selectes" data-placeholder="Algodon" required name="sabanas">
-                                                <option></option>
-                                                <option value="Algodon">Algodon</option>
-                                                <option value="Estandar">Estandar</option>
-                                                <option value="Seda">Seda</option>
-                                                <option value="Bambu">Bambu</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <p class="text-uppercase">Numero de camas</p>
-                                    <div class="formwrap">
-                                        <!--Select 2-->
-                                        <select class="selectes" data-placeholder="1" required name="numeroCamas">
-                                            <option></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                        </select>
-                                    </div>
+                                <div style="width: 600px;">
+                                    <label for="">Escoger ID de la Habitacion que desea editar o eliminar</label>
+                                    <select name="_idHabi">
+                                        {% for i in idHab %}
+                                        <option>{{i}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div><br><br>
+                                <!--Select 1-->
+                                <h5 class="text-uppercase">Tipo de cama</h5>
+                                <div class="formwrap" style="width: 600px;">
+                                    <select class="selectes" data-placeholder="Habitacion estandar" required
+                                        name="habitacion">
+                                        <option></option>
+                                        <option value="Habitacion estandar">Habitacion estandar</option>
+                                        <option value="Habitacion junior">Habitacion junior</option>
+                                        <option value="Habitación senior">Habitación senior</option>
+                                    </select>
                                 </div>
-                                <p class="text-uppercase">Servicios</p>
-                                <div class="formwrap">
+
+
+                                <h5 class="text-uppercase">Tipo de cama</h5>
+                                <!--Select 2-->
+                                <div class="formwrap" style="width: 600px;">
+                                    <select class="selectes" data-placeholder="Habitacion Doble" name="tipoHabitacion"
+                                        required>
+                                        <option></option>
+                                        <option value="Habitacion Doble">Habitacion Doble</option>
+                                        <option value="Habitación doble de uso individual ">Habitación doble de
+                                            uso
+                                            individual </option>
+                                        <option value="Habitación senior">Habitación triple</option>
+                                    </select>
+                                </div>
+
+
+                                <h5 class="text-uppercase">Sabanas</h5>
+
+                                <!--Select 2-->
+                                <div class="formwrap" style="width: 600px;">
+                                    <select class="selectes" data-placeholder="Algodon" required name="sabanas">
+                                        <option></option>
+                                        <option value="Algodon">Algodon</option>
+                                        <option value="Estandar">Estandar</option>
+                                        <option value="Seda">Seda</option>
+                                        <option value="Bambu">Bambu</option>
+                                    </select>
+                                </div>
+
+
+                                <h5 class="text-uppercase">Numero de camas</h5>
+                                <div class="formwrap" style="width: 600px;">
+                                    <!--Select 2-->
+                                    <select class="selectes" data-placeholder="1" required name="numeroCamas">
+                                        <option></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </div>
+
+                                <h5 class="text-uppercase">Servicios</h5>
+                                <div class="formwrap" style="width: 600px;">
                                     <!--Select 2-->
                                     <select class="selectes" data-placeholder="Tv con cable" required name="servicios">
                                         <option></option>
@@ -300,8 +329,10 @@
                                         <option value="Ducha caliente">Ducha caliente</option>
                                     </select>
                                 </div>
-                                <div id="botones">
-                                    <button type="submit" id="btnSed">Editar</button>
+                                <br>
+                                <br>
+                                <div style="width: 600px;">
+                                    <input type="submit" value="editar" id="btn" name="btn">
                                 </div>
                             </form>
                         </div>

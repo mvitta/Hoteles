@@ -49,10 +49,10 @@
 
 
 .form_wrap {
-    width  : 100%;
-    height : 80%;
-    margin : 10px auto;
-    display: flex;
+    width        : 100%;
+    height       : 80%;
+    margin       : 10px auto;
+    display      : flex;
     background   : #fff;
     border-radius: 10px;
     overflow     : hidden;
@@ -114,8 +114,8 @@
 }
 
 .info_items p {
-    display    : flex;
-    align-items: center;
+    display      : flex;
+    align-items  : center;
     font-size    : 16px;
     font-weight  : 600;
     margin-bottom: 10px;
@@ -169,10 +169,10 @@ form.form_habitacion section {
     margin-bottom: 20px;
     border       : none;
     border-bottom: 2px solid #D1D1D1;
-    font-family: 'Open sans';
-    color      : #5A5A5A;
-    font-size  : 14px;
-    font-weight: 400;
+    font-family  : 'Open sans';
+    color        : #5A5A5A;
+    font-size    : 14px;
+    font-weight  : 400;
 }
 
 form.form_habitacion section {
@@ -236,6 +236,26 @@ input[type="button"] {
 }
 
 input[type="button"]:hover {
+    background: #3066a5;
+}
+
+input[type="submit"] {
+    width        : 180px;
+    background   : #4091EC;
+    padding      : 10px;
+    border       : none;
+    border-radius: 25px;
+    align-self   : flex-end;
+    color        : #fff;
+    font-family  : Arial, Helvetica, sans-serif;
+    font-size    : 16px;
+    font-weight  : 600;
+    cursor       : pointer;
+    margin       : 10px;
+
+}
+
+input[type="submit"]:hover {
     background: #3066a5;
 }
 
