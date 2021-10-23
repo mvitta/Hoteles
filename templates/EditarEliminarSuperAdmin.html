@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- QUEDA PENDIENTE CONECTAR CON BD RESERVAS Y EDITAR O ELIMINAR HABITACIONES -->
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -124,8 +125,87 @@
             <div class="container_sub_main">
                 <section class="buscarhab">
                     <br> <br>
-                    <div class="dmRespColsWrapper" id="1884708595">
-                        <div class="dmRespCol small-12 medium-12 large-12" id="1514278081">
+                    <h1 class="u_1649601167 dmNewParagraph" id="1649601167" data-uialign="center"
+                        data-element-type="paragraph" localization_key="googleTranslate.ih9vPk3.30">
+                        <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
+                            <b><span class="font-size-36 lh-1"></span></b>
+                        </font><span style="font-weight: 400;">
+                            <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
+                                <b><span style="font-weight: 400;"
+                                        class="font-size-36 lh-1 m-specific m-font-size-30">Editar y Eliminar
+                                        Habitaciones</span></b>
+                            </font>
+                        </span>
+                    </h1>
+                    <br>
+                    <br>
+                    <style>
+                        /* Glyph, by Harry Roberts */
+                        hr.style-eight {
+                            overflow: visible;
+                            /* For IE */
+                            padding: 0;
+                            border: none;
+                            border-top: medium double #333;
+                            color: #333;
+                            text-align: center;
+                        }
+
+                        hr.style-eight:after {
+                            content: "§";
+                            display: inline-block;
+                            position: relative;
+                            top: -0.7em;
+                            font-size: 1.5em;
+                            padding: 0 0.25em;
+                            background: white;
+                        }
+                    </style>
+                    <hr class="style-eight">
+                    <br>
+                </section>
+                <div id="buscar">
+                    <form action="" method="post">
+                        <table id="example" class="display" style="width:80%" name>
+                            <thead>
+                                <tr>
+                                    <th>ID Habitacion</th>
+                                    <th>Tipo de Habitacion</th>
+                                    <th>Tipo de cama</th>
+                                    <th>Tipo de sabana</th>
+                                    <th>Numero de camas</th>
+                                    <th>Servicios</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in datos %}
+                                <tr>
+                                    <td>{{i[0]}}</td>
+                                    <td>{{i[2]}}</td>
+                                    <td>{{i[3]}}</td>
+                                    <td>{{i[4]}}</td>
+                                    <td>{{i[5]}}</td>
+                                    <td>{{i[6]}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <br>
+
+                        <br>
+                        <div id="divBotones">
+                            <input type="submit" value="Ir a editar" class="" , name="btn">
+                            <input type="submit" value="Eliminar" class="" name="btn">
+                            <input type="button" value="comentarios" class="">
+                        </div>
+                    </form>
+                    {% if editar %}
+                    <br><br>
+
+                    <div style="display: flex; justify-content: center; text-align: center;">
+                        <div>
                             <h1 class="u_1649601167 dmNewParagraph" id="1649601167" data-uialign="center"
                                 data-element-type="paragraph" localization_key="googleTranslate.ih9vPk3.30">
                                 <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
@@ -133,12 +213,11 @@
                                 </font><span style="font-weight: 400;">
                                     <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
                                         <b><span style="font-weight: 400;"
-                                                class="font-size-36 lh-1 m-specific m-font-size-30">Editar y Eliminar Habitaciones</span></b>
+                                                class="font-size-36 lh-1 m-specific m-font-size-30">Editar</span></b>
                                     </font>
                                 </span>
                             </h1>
-                            <br>
-                            <br>
+                            <br><br>
                             <style>
                                 /* Glyph, by Harry Roberts */
                                 hr.style-eight {
@@ -162,46 +241,90 @@
                                 }
                             </style>
                             <hr class="style-eight">
+                            <form action="" class="form_habitacion" method="post">
+                                <div style="width: 600px;">
+                                    <label for="">Escoger ID de la Habitacion que desea editar o eliminar</label>
+                                    <select name="_idHabi">
+                                        {% for i in idHab %}
+                                        <option>{{i}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div><br><br>
+                                <!--Select 1-->
+                                <h5 class="text-uppercase">Tipo de cama</h5>
+                                <div class="formwrap" style="width: 600px;">
+                                    <select class="selectes" data-placeholder="Habitacion estandar" required
+                                        name="habitacion">
+                                        <option></option>
+                                        <option value="Habitacion estandar">Habitacion estandar</option>
+                                        <option value="Habitacion junior">Habitacion junior</option>
+                                        <option value="Habitación senior">Habitación senior</option>
+                                    </select>
+                                </div>
+
+
+                                <h5 class="text-uppercase">Tipo de cama</h5>
+                                <!--Select 2-->
+                                <div class="formwrap" style="width: 600px;">
+                                    <select class="selectes" data-placeholder="Habitacion Doble" name="tipoHabitacion"
+                                        required>
+                                        <option></option>
+                                        <option value="Habitacion Doble">Habitacion Doble</option>
+                                        <option value="Habitación doble de uso individual ">Habitación doble de
+                                            uso
+                                            individual </option>
+                                        <option value="Habitación senior">Habitación triple</option>
+                                    </select>
+                                </div>
+
+
+                                <h5 class="text-uppercase">Sabanas</h5>
+
+                                <!--Select 2-->
+                                <div class="formwrap" style="width: 600px;">
+                                    <select class="selectes" data-placeholder="Algodon" required name="sabanas">
+                                        <option></option>
+                                        <option value="Algodon">Algodon</option>
+                                        <option value="Estandar">Estandar</option>
+                                        <option value="Seda">Seda</option>
+                                        <option value="Bambu">Bambu</option>
+                                    </select>
+                                </div>
+
+
+                                <h5 class="text-uppercase">Numero de camas</h5>
+                                <div class="formwrap" style="width: 600px;">
+                                    <!--Select 2-->
+                                    <select class="selectes" data-placeholder="1" required name="numeroCamas">
+                                        <option></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </div>
+
+                                <h5 class="text-uppercase">Servicios</h5>
+                                <div class="formwrap" style="width: 600px;">
+                                    <!--Select 2-->
+                                    <select class="selectes" data-placeholder="Tv con cable" required name="servicios">
+                                        <option></option>
+                                        <option value="Tv con cable">Tv con cable</option>
+                                        <option value="Servicio al cuarto">Servicio al cuarto</option>
+                                        <option value="Aire acondicionado">Aire acondicionado</option>
+                                        <option value="Ducha caliente">Ducha caliente</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div style="width: 600px;">
+                                    <input type="submit" value="editar" id="btn" name="btn">
+                                </div>
+                            </form>
                         </div>
-                        <br>
-                </section>
-                <div id="buscar">
-                    <table id="example" class="display" style="width:80%">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>ID Habitacion</th>
-                                <th>Tipo de Habitacion</th>
-                                <th>Tipo de cama</th>
-                                <th>Tipo de sabana</th>
-                                <th>Numero de camas</th>
-                                <th>Servicios</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for i in datos %}
-                            <tr>
-                                <td><input type="radio" name="selecHab"></td>
-                                <td>{{i[0]}}</td>
-                                <td>{{i[2]}}</td>
-                                <td>{{i[3]}}</td>
-                                <td>{{i[4]}}</td>
-                                <td>{{i[5]}}</td>
-                                <td>{{i[6]}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                    </div>
+                    {% endif %}
                 </div>
-                <br>
-                <div id="divBotones">
-                    <input type="button" value="Editar habitacion" class="">
-                    <input type="button" value="Eliminar Habitacion" class="">
-                    <input type="button" value="ver comentarios" class="">
-                </div>
-                <br> <br>
-
-
             </div>
             <!-- FOOTER -->
             <div class="footer-grids">

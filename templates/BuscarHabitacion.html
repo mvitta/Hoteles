@@ -93,7 +93,8 @@
                         </font><span style="font-weight: 400;">
                             <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
                                 <b><span style="font-weight: 400;"
-                                        class="font-size-36 lh-1 m-specific m-font-size-30">Habitaciones Disponibles</span></b>
+                                        class="font-size-36 lh-1 m-specific m-font-size-30">Habitaciones
+                                        Disponibles</span></b>
                             </font>
                         </span>
                     </h1>
@@ -125,11 +126,21 @@
                     <br>
                 </section>
                 <div id="buscar">
-                    <form action="buscarHabitacion" method="get">
+                    <form action="" method="post">
+                        <div style="width: 100%; text-align: center;">
+                            <label for="">para realizar una reserva debes selecionar la ID de la habitacion y dar click
+                                en el boton crear reserva</label>
+                            <select name="idHabiBuscar">
+                                {% for i in idHab %}
+                                <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br>
                         <table id="example" class="display" style="width:80%">
                             <thead>
                                 <tr>
-                                    <th></th>
+
                                     <th>ID Habitacion</th>
                                     <th>Tipo de Habitacion</th>
                                     <th>Tipo de cama</th>
@@ -139,9 +150,9 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 {% for i in datos %}
                                 <tr>
-                                    <td><input type="radio" name="selecHab"></td>
                                     <td>{{i[0]}}</td>
                                     <td>{{i[2]}}</td>
                                     <td>{{i[3]}}</td>
@@ -158,7 +169,7 @@
                             <input type="button" value="Editar habitacion" class="">
                             <input type="button" value="Eliminar Habitacion" class="">
                             <input type="button" value="ver comentarios" class="">
-                            <button type="submit">Crear Reserva</button>
+                            <input type="submit" value="Crear Reserva">
                         </div>
                     </form>
                 </div>

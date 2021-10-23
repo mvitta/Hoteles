@@ -37,7 +37,7 @@ function validarCorreo(valor) {
 }
 
 formulario.addEventListener('submit', (e) => {
-    e.preventDefault();
+
     let error = "";
     let estado = "";
     const datos = document.getElementsByClassName('cajas');
@@ -49,46 +49,52 @@ formulario.addEventListener('submit', (e) => {
     let salida = datos[5].value;
     let permanencia = datos[6].value
     let numeroPersonas = datos[7].value
-    let nivelEstudio = datos[8].value
-    console.log([nombre, apellido, correo, telefono, llegada, salida, permanencia, numeroPersonas, nivelEstudio])
+    console.log([nombre, apellido, correo, telefono, llegada, salida, permanencia, numeroPersonas])
     if (!validarNombre(nombre)) {
         error += "<br><br> Nombre no es valido <br>";
     }
     else {
-        estado = "OK";
+        estado += "OK";
     }
     if (!validarApellido(apellido)) {
         error += "Apellido no es valido <br>";
     }
     else {
-        estado = "OK";
+        estado += "OK";
     }
     if (!validarCorreo(correo)) {
         error += "Correo no es valido <br>";
     }
     else {
-        estado = "OK";
+        estado += "OK";
     }
     if (!validarTelefono(telefono)) {
         error += "Telefono no es valido <br>";
     }
     else {
-        estado = "OK";
+        estado += "OK";
     }
     if (llegada == "") {
         error += "Debe selecionar una fecha de llegada <br>"
     }
     else {
-        estado = "OK"
+        estado += "OK"
     }
     if (salida == "") {
         error += "Debe selecionar una fecha de salida <br>"
     }
     else {
-        estado = "OK"
+        estado += "OK"
     }
 
-    imprimirError.innerHTML = error;
+    if (estado == "OKOKOKOKOKOK") {
+
+    }
+    else {
+        e.preventDefault();
+        imprimirError.innerHTML = error;
+    }
+
 
 });
 

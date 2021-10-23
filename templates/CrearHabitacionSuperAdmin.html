@@ -128,14 +128,15 @@
             </section>
           </section>
 
-          <form action="" class="form_habitacion">
+          <form action="" class="form_habitacion" method="post">
             <h2>Crear habitacion</h2>
             <div class="user_info">
               <p class="text-uppercase">Tipo de habitacion</p>
               <div class="form-wrap">
                 <!--Select 1-->
                 <div class="formwrap">
-                  <select class="selectes" data-placeholder="Habitacion estandar" data-constraints="@Required">
+                  <select class="selectes" data-placeholder="Habitacion estandar" data-constraints="@Required"
+                    name="habitacion">
                     <option>&nbsp;</option>
                     <option value="Habitacion estandar" selected>Habitacion estandar</option>
                     <option value="Habitacion junior">Habitacion junior</option>
@@ -148,7 +149,8 @@
               <div class="form-wrap">
                 <!--Select 2-->
                 <div class="formwrap">
-                  <select class="selectes" data-placeholder="Habitacion Doble" data-constraints="@Required">
+                  <select class="selectes" data-placeholder="Habitacion Doble" data-constraints="@Required"
+                    name="tipoHabitacion">
                     <option>&nbsp;</option>
                     <option value="Habitacion Doble" selected>Habitacion Doble</option>
                     <option value="Habitación doble de uso individual ">Habitación doble de uso individual </option>
@@ -161,7 +163,7 @@
               <div class="form-wrap">
                 <!--Select 2-->
                 <div class="formwrap">
-                  <select class="selectes" data-placeholder="Algodon" data-constraints="@Required">
+                  <select class="selectes" data-placeholder="Algodon" data-constraints="@Required" name="sabanas">
                     <option>&nbsp;</option>
                     <option value="Algodon" selected>Algodon</option>
                     <option value="Estandar">Estandar</option>
@@ -174,7 +176,7 @@
               <p class="text-uppercase">Numero de camas</p>
               <div class="formwrap">
                 <!--Select 2-->
-                <select class="selectes" data-placeholder="1" data-constraints="@Required">
+                <select class="selectes" data-placeholder="1" data-constraints="@Required" name="numeroCamas">
                   <option>&nbsp;</option>
                   <option value="1" selected>1</option>
                   <option value="2">2</option>
@@ -186,7 +188,7 @@
             <p class="text-uppercase">Servicios</p>
             <div class="formwrap">
               <!--Select 2-->
-              <select class="selectes" data-placeholder="Tv con cable" data-constraints="@Required">
+              <select class="selectes" data-placeholder="Tv con cable" data-constraints="@Required" name="servicios">
                 <option>&nbsp;</option>
                 <option value="Tv con cable" selected>Tv con cable</option>
                 <option value="Servicio al cuarto">Servicio al cuarto</option>
@@ -195,8 +197,7 @@
               </select>
             </div>
             <div id="botones">
-              <input type="button" value="Cargar Imagen" id="btnSend">
-              <input type="button" value="Crear" id="btnSend">
+              <button type="submit" id="btnSed">Crear</button>
             </div>
           </form>
         </section>
