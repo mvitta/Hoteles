@@ -50,9 +50,6 @@
                             <li><a href="{{url_for('buscarHabitacion')}}"><span class="name_icon"><i
                                             class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
                                         class="name_title">Buscar Habitaciones</span></a></li>
-                            <li><a href="{{url_for('reserva')}}"><span class="name_icon"><i
-                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
-                                        class="name_title">Reservar Habitacion</span></a></li>
                             <li><a href="{{url_for('buscarReserva')}}"><span class="name_icon"><i
                                             class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
                                         class="name_title">Buscar Reserva</span></a></li>
@@ -128,9 +125,12 @@
                 <div id="buscar">
                     <form action="" method="post">
                         <div style="width: 100%; text-align: center;">
-                            <label for="">para realizar una reserva debes selecionar la ID de la habitacion y dar click
+                            <label style="font-weight: bold; font-size: 18px;" for="">para realizar una reserva debes
+                                selecionar la ID de
+                                la habitacion y dar click
                                 en el boton crear reserva</label>
-                            <select name="idHabiBuscar">
+                            <br>
+                            <select style="width: 40px; height: 30px;" name="idHabiBuscar">
                                 {% for i in idHab %}
                                 <option>{{i}}</option>
                                 {% endfor %}
@@ -166,10 +166,13 @@
                         <br>
                         <br><br>
                         <div id="divBotones">
+                            {% if soy != "@cuc.com" %}
                             <input type="button" value="Editar habitacion" class="">
                             <input type="button" value="Eliminar Habitacion" class="">
                             <input type="button" value="ver comentarios" class="">
+                            {% else %}
                             <input type="submit" value="Crear Reserva">
+                            {% endif %}
                         </div>
                     </form>
                 </div>

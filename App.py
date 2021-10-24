@@ -15,6 +15,7 @@ claveSuper = None
 Habitaciones = None
 idHab = None
 idParaReservas = None
+valida = None
 
 
 def conexionBaseDeDatos():
@@ -181,7 +182,7 @@ def registro():
 
 @app.route('/hacerlogin', methods=['POST'])
 def hacerlogin():
-    global claveAdmin, Habitaciones, idHab, claveSuper, claveUsuario
+    global claveAdmin, Habitaciones, idHab, claveSuper, claveUsuario, valida
     try:
         metodo = request.method
         if metodo == 'POST':
@@ -245,6 +246,19 @@ def dashboardAdministrador():
         return render_template('DashboardAdministrador.html')
     else:
         return "No tienes los permisos para entrar al Administrador, inicia session con tu cuenta"
+
+
+@app.route('/dashboardAdministrador/registroUsuariosAdmin')
+def registroUsuariosAdmin():
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "SELECT id_usuario, cedula, nombre, apellido, correo FROM usuarios"
+    cur.execute(sql)
+    conexion.commit()
+    infoUsuarios = cur.fetchall()
+    cur.close()
+    print(infoUsuarios)
+    return render_template("registroUsuariosAdmin.html", infoUsuarios=infoUsuarios)
 
 
 @app.route('/dashboardAdministrador/crearHabitacion', methods=['GET', 'POST'])
@@ -317,12 +331,11 @@ def buscarHabitacion():
     if request.method == 'POST':
         idParaReservas = request.form.get('idHabiBuscar')
         return redirect(url_for('reserva'))
-    return render_template('BuscarHabitacion.html', datos=Habitaciones, idHab=idHab, filas=numeroDeRegistro())
+    return render_template('BuscarHabitacion.html', datos=Habitaciones, idHab=idHab, filas=numeroDeRegistro(), soy=valida)
 
 
-@app.route('/DashboardUsuariofinal/reserva', methods=['GET', 'POST'])
+@app.route('/DashboardUsuariofinal/buscarHabitacion/reserva', methods=['GET', 'POST'])
 def reserva():
-    print(idParaReservas)
     if request.method == 'POST':
         nombre = request.form.get('nombre')
         apellido = request.form.get('apellido')
@@ -346,7 +359,19 @@ def reserva():
 
 @app.route('/DashboardUsuariofinal/buscarReserva')
 def buscarReserva():
-    return render_template('BuscarReservaUsuariofinal.html')
+    tieneReserva = None
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "SELECT * FROM reservas WHERE id_usuario=?"
+    cur.execute(sql, [claveUsuario])
+    conexion.commit()
+    infoReserva = cur.fetchone()
+    cur.close()
+
+    if infoReserva != None:
+        tieneReserva = True
+    print(infoReserva)
+    return render_template('BuscarReservaUsuariofinal.html', tieneReserva=tieneReserva, infoReserva=infoReserva)
 
 
 @app.route('/DashboardUsuariofinal/comentario')
@@ -362,6 +387,19 @@ def dashboardSuperAdministrador():
         return render_template('dashboardSuperAdministrador.html')
     else:
         return "No tienes los permisos para entrar al SuperAdmin, inicia session con tu cuenta"
+
+
+@app.route('/dashboardSuperAdministrador/registroUsuariosSuper')
+def registroUsuariosSuper():
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "SELECT id_usuario, cedula, nombre, apellido, correo FROM usuarios"
+    cur.execute(sql)
+    conexion.commit()
+    infoUsuarios = cur.fetchall()
+    cur.close()
+    print(infoUsuarios)
+    return render_template("registroUsuariosSuper.html", infoUsuarios=infoUsuarios)
 
 
 @app.route('/dashboardSuperAdministrador/crearHabitacion', methods=['GET', 'POST'])

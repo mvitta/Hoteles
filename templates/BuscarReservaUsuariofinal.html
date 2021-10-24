@@ -36,9 +36,6 @@
                             <li><a href="{{url_for('buscarHabitacion')}}"><span class="name_icon"><i
                                             class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
                                         class="name_title">Buscar Habitaciones</span></a></li>
-                            <li><a href="{{url_for('reserva')}}"><span class="name_icon"><i
-                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
-                                        class="name_title">Reservar Habitacion</span></a></li>
                             <li><a href="{{url_for('buscarReserva')}}"><span class="name_icon"><i
                                             class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
                                         class="name_title">Buscar Reserva</span></a></li>
@@ -70,7 +67,7 @@
                 <div class="container_user"><a href="#"><i class="zmdi zmdi-account-box  zmdi-hc-3x"></i></a></div>
             </div>
             <div class="container_sub_main">
-
+                {% if tieneReserva %}
                 <div id="contenedorGeneral">
                     <div id="contenedorTitulo">
                         <h1 class="u_1649601167 dmNewParagraph" id="1649601167" data-uialign="center"
@@ -83,7 +80,7 @@
                                             class="font-size-36 lh-1 m-specific m-font-size-30">Mi Reserva</span></b>
                                 </font>
                             </span>
-                        </h1>        
+                        </h1>
                         <style>
                             /* Glyph, by Harry Roberts */
                             hr.style-eight {
@@ -138,16 +135,16 @@
 
                     <div id="datos">
                         <div>
-                            Maikol
+                            {{ infoReserva[3]}}
                         </div>
                         <div>
-                            Vitta
+                            {{ infoReserva[4]}}
                         </div>
                         <div>
-                            mvitta@uninorte.edu.co
+                            {{ infoReserva[5]}}
                         </div>
                         <div>
-                            3456702367:
+                            {{ infoReserva[6]}}
                         </div>
                     </div>
                     <hr>
@@ -212,13 +209,13 @@
                             <label for="">Fecha de LLegada</label>
                         </div>
                         <div>
-                            <input type="datetime">
+                            <label for="">{{ infoReserva[7]}}</label>
                         </div>
                         <div>
                             <label for="">Salida</label>
                         </div>
                         <div>
-                            <input type="datetime">
+                            <label for="">{{ infoReserva[8]}}</label>
                         </div>
                     </div>
 
@@ -256,7 +253,9 @@
                         <input type="submit" value="Confirmar Reserva" class="btnSend">
                     </div>
                 </div>
-
+                {% else %}
+                No tienes reservas para ver, realiza una :D
+                {% endif %}
 
 
             </div>

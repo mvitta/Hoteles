@@ -37,7 +37,7 @@
         <div class="container_navigation">
             <div class="header">
                 <span class="name_icon"><i class="zmdi zmdi-account zmdi-hc-3x"></i></span><span class="name_title">
-                    <h2>Administrador</h2>
+                    <h2>Super Administrador</h2>
                 </span>
             </div>
             <ul>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="sub_menu_list">
                         <ul>
-                            <li><a href="{{url_for('registroUsuariosAdmin')}}"><span class="name_icon"><i
+                            <li><a href="{{url_for('registroUsuariosSuper')}}"><span class="name_icon"><i
                                             class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
                                         class="name_title">Registro Usuarios</span></a></li>
                         </ul>
@@ -60,10 +60,10 @@
                     </div>
                     <div class="sub_menu_list">
                         <ul>
-                            <li><a href="{{url_for('crearHabitacionAdmin')}}"><span class="name_icon"><i
+                            <li><a href="{{url_for('crearHabitacionSuper')}}"><span class="name_icon"><i
                                             class="zmdi zmdi-check zmdi-hc-1x"></i></span><span class="name_title">Crear
                                         Habitacion</span></a></li>
-                            <li><a href="{{url_for('EditarEliminarAdmin')}}"><span class="name_icon"><i
+                            <li><a href="{{url_for('EditarEliminarSuper')}}"><span class="name_icon"><i
                                             class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
                                         class="name_title">Editar y Eliminar Habitacion</span></a></li>
 
@@ -132,8 +132,7 @@
                         </font><span style="font-weight: 400;">
                             <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
                                 <b><span style="font-weight: 400;"
-                                        class="font-size-36 lh-1 m-specific m-font-size-30">Editar y Eliminar
-                                        Habitaciones</span></b>
+                                        class="font-size-36 lh-1 m-specific m-font-size-30">Registro Usuarios</span></b>
                             </font>
                         </span>
                     </h1>
@@ -169,24 +168,22 @@
                         <table id="example" class="display" style="width:80%" name>
                             <thead>
                                 <tr>
-                                    <th>ID Habitacion</th>
-                                    <th>Tipo de Habitacion</th>
-                                    <th>Tipo de cama</th>
-                                    <th>Tipo de sabana</th>
-                                    <th>Numero de camas</th>
-                                    <th>Servicios</th>
-
+                                    <th>ID Usuario</th>
+                                    <th>Cedula</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido/th>
+                                    <th>Correo</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for i in datos %}
-                                <tr>
+                                {% for i in infoUsuarios %}
+                                <tr style="text-align: center;">
                                     <td>{{i[0]}}</td>
+                                    <td>{{i[1]}}</td>
                                     <td>{{i[2]}}</td>
                                     <td>{{i[3]}}</td>
                                     <td>{{i[4]}}</td>
-                                    <td>{{i[5]}}</td>
-                                    <td>{{i[6]}}</td>
+
                                 </tr>
                                 {% endfor %}
                             </tbody>
