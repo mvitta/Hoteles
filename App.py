@@ -314,6 +314,19 @@ def EditarEliminarAdmin():
     return render_template('EditarEliminarAdmin.html', datos=Habitaciones, idHab=idHab, editar=seccionEditar)
 
 
+@app.route('/dashboardAdministrador/verReservas')
+def verReservasAdmin():
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "SELECT * FROM reservas"
+    cur.execute(sql)
+    conexion.commit()
+    infoUsuarios = cur.fetchall()
+    cur.close()
+    print(infoUsuarios)
+    return render_template("verReservasAdmin.html", infoUsuarios=infoUsuarios)
+
+
 # ----------- USUARIO FINAL --------------
 
 
@@ -459,6 +472,19 @@ def EditarEliminarSuper():
     if metodo == "GET":
         return render_template('EditarEliminarSuperAdmin.html', datos=Habitaciones, idHab=idHab, editar=seccionEditar)
     return render_template('EditarEliminarSuperAdmin.html', datos=Habitaciones, idHab=idHab, editar=seccionEditar)
+
+
+@app.route('/dashboardSuperAdministrador/verReservas')
+def verReservasSuperAdmin():
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "SELECT * FROM reservas"
+    cur.execute(sql)
+    conexion.commit()
+    infoUsuarios = cur.fetchall()
+    cur.close()
+    print(infoUsuarios)
+    return render_template("verReservasSuperAdmin.html", infoUsuarios=infoUsuarios)
 
 
 @app.route('/cerrarSesion')

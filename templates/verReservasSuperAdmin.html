@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css"
         href="/static/css/material-design-iconic-font/css/material-design-iconic-font.css">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_footer.css') }}">
-    <title>Editar o Eliminar</title>
+    <title>ver reservas</title>
     <style>
         .row-selected {
             background: yellow;
@@ -77,7 +77,7 @@
                     </div>
                     <div class="sub_menu_list">
                         <ul>
-                            <li><a href="{{url_for('verReservasAdmin')}}"><span class="name_icon"><i
+                            <li><a href="{{url_for('verReservasSuperAdmin')}}"><span class="name_icon"><i
                                             class="zmdi zmdi-check zmdi-hc-1x"></i></span><span class="name_title">Ver
                                         Reservas</span></a></li>
                         </ul>
@@ -132,8 +132,8 @@
                         </font><span style="font-weight: 400;">
                             <font style="color: rgb(9, 28, 63);" class="font-size-30 lh-1">
                                 <b><span style="font-weight: 400;"
-                                        class="font-size-36 lh-1 m-specific m-font-size-30">Editar y Eliminar
-                                        Habitaciones</span></b>
+                                        class="font-size-36 lh-1 m-specific m-font-size-30">Reservas
+                                        existentes</span></b>
                             </font>
                         </span>
                     </h1>
@@ -169,24 +169,34 @@
                         <table id="example" class="display" style="width:80%" name>
                             <thead>
                                 <tr>
+                                    <th>ID reserva</th>
+                                    <th>ID usuario</th>
                                     <th>ID Habitacion</th>
-                                    <th>Tipo de Habitacion</th>
-                                    <th>Tipo de cama</th>
-                                    <th>Tipo de sabana</th>
-                                    <th>Numero de camas</th>
-                                    <th>Servicios</th>
-
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Correo</th>
+                                    <th>Telefono</th>
+                                    <th>Hora de llegada</th>
+                                    <th>Hora de salida</th>
+                                    <th>Dias</th>
+                                    <th>Personas</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for i in datos %}
-                                <tr>
+                                {% for i in infoUsuarios %}
+                                <tr style="text-align: center;">
                                     <td>{{i[0]}}</td>
+                                    <td>{{i[1]}}</td>
                                     <td>{{i[2]}}</td>
                                     <td>{{i[3]}}</td>
                                     <td>{{i[4]}}</td>
                                     <td>{{i[5]}}</td>
                                     <td>{{i[6]}}</td>
+                                    <td>{{i[7]}}</td>
+                                    <td>{{i[8]}}</td>
+                                    <td>{{i[9]}}</td>
+                                    <td>{{i[10]}}</td>
+
                                 </tr>
                                 {% endfor %}
                             </tbody>
