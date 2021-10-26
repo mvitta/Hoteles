@@ -38,19 +38,6 @@
                     </div>
                 </li>
                 <li>
-                    <div class="sub_menu">
-                        <span class="name_icon"><i class="zmdi zmdi-accounts zmdi-hc-2x"></i></span>
-                        <span class="name_title">Gestionar Permisos y Roles</span>
-                    </div>
-                    <div class="sub_menu_list">
-                        <ul>
-                            <li><a href="#"><span class="name_icon"><i
-                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
-                                        class="name_title">Asignar Permisos y Roles</span></a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
                     <div class="sub_menu"><span class="name_icon"><i class="zmdi zmdi-hotel zmdi-hc-2x"></i></span>
                         <span class="name_title">Gestionar Habitaciones</span>
                     </div>
@@ -73,16 +60,8 @@
                     </div>
                     <div class="sub_menu_list">
                         <ul>
-                            <li><a href="{{url_for('verReservasSuperAdmin')}}"><span class="name_icon"><i
+                            <li><a href="{{url_for('verReservasSuper')}}"><span class="name_icon"><i
                                             class="zmdi zmdi-check zmdi-hc-1x"></i></span><span class="name_title">Ver
-                                        Reservas</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="sub_menu_list">
-                        <ul>
-                            <li><a href="#"><span class="name_icon"><i
-                                            class="zmdi zmdi-check zmdi-hc-1x"></i></span><span
-                                        class="name_title">Eliminar
                                         Reservas</span></a></li>
                         </ul>
                     </div>
@@ -93,7 +72,7 @@
                     </div>
                     <div class="sub_menu_list">
                         <ul>
-                            <li><a href="#"><span class="name_icon"><i
+                            <li><a href="{{url_for('verCalificacionHabitacionesSuper')}}"><span class="name_icon"><i
                                             class="zmdi zmdi-check zmdi-hc-1x"></i></span><span class="name_title">Ver
                                         Calificacion de habitaciones</span></a></li>
                         </ul>
@@ -105,7 +84,7 @@
                     </div>
                     <div class="sub_menu_list">
                         <ul>
-                            <li><a href="#"><span class="name_icon"><i
+                            <li><a href="{{url_for('verComentarioSuper')}}"><span class="name_icon"><i
                                             class="zmdi zmdi-check zmdi-hc-1x"></i></span><span class="name_title">Ver
                                         Comentario</span></a></li>
                         </ul>

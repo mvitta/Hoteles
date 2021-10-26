@@ -350,6 +350,19 @@ def verCalificacionHabitaciones():
     return render_template("verCalificacionesAdmin.html", infoCalificaciones=infoCalificaciones)
 
 
+@app.route('/dashboardAdministrador/verComentario')
+def verComentario():
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "SELECT id_comentario, id_usuario, id_habitacion, reservacionAfectadaCovid, comentario, visitaProbable FROM comentarios"
+    cur.execute(sql)
+    conexion.commit()
+    infoComentarios = cur.fetchall()
+    cur.close()
+    print(infoComentarios)
+    return render_template("verComentarioAdmin.html", infoComentarios=infoComentarios)
+
+
 # ----------- USUARIO FINAL --------------
 
 
@@ -514,7 +527,7 @@ def EditarEliminarSuper():
 
 
 @app.route('/dashboardSuperAdministrador/verReservas')
-def verReservasSuperAdmin():
+def verReservasSuper():
     conexion = conexionBaseDeDatos()
     cur = conexion.cursor()
     sql = "SELECT * FROM reservas"
@@ -524,6 +537,32 @@ def verReservasSuperAdmin():
     cur.close()
     print(infoUsuarios)
     return render_template("verReservasSuperAdmin.html", infoUsuarios=infoUsuarios)
+
+
+@app.route('/dashboardSuperAdministrador/verCalificacionHabitaciones')
+def verCalificacionHabitacionesSuper():
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "SELECT * FROM calificaciones"
+    cur.execute(sql)
+    conexion.commit()
+    infoCalificaciones = cur.fetchall()
+    cur.close()
+    print(infoCalificaciones)
+    return render_template("verCalificacionesSuperAdmin.html", infoCalificaciones=infoCalificaciones)
+
+
+@app.route('/dashboarSuperdAdministrador/verComentario')
+def verComentarioSuper():
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "SELECT id_comentario, id_usuario, id_habitacion, reservacionAfectadaCovid, comentario, visitaProbable FROM comentarios"
+    cur.execute(sql)
+    conexion.commit()
+    infoComentarios = cur.fetchall()
+    cur.close()
+    print(infoComentarios)
+    return render_template("verComentarioSuperAdmin.html", infoComentarios=infoComentarios)
 
 
 @app.route('/cerrarSesion')
