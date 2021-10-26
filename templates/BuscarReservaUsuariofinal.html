@@ -158,7 +158,7 @@
                                 <strong>Tipo de habitacion</strong>
                             </div>
                             <div class="seccion">
-                                Habitacion 1
+                                {{infoHabitacion[0]}}
                             </div>
                         </div>
                         <div id="infoHabitacion">
@@ -166,7 +166,7 @@
                                 <strong> Tipo de cama</strong>
                             </div>
                             <div class="seccion">
-                                Doble
+                                {{infoHabitacion[1]}}
                             </div>
                         </div>
                         <div id="infoHabitacion">
@@ -174,7 +174,7 @@
                                 <strong> Tipo de sabana</strong>
                             </div>
                             <div class="seccion">
-                                Estandar
+                                {{infoHabitacion[2]}}
                             </div>
                         </div>
                         <div id="infoHabitacion">
@@ -182,23 +182,15 @@
                                 <strong> Servicios</strong>
                             </div>
                             <div class="seccion">
-                                Sin Servicio
+                                {{infoHabitacion[3]}}
                             </div>
                         </div>
                         <div id="infoHabitacion">
                             <div class="seccion">
-                                <strong> Capacidad </strong>
+                                <strong> Servicio </strong>
                             </div>
                             <div class="seccion">
-                                2
-                            </div>
-                        </div>
-                        <div id="infoHabitacion">
-                            <div class="seccion">
-                                <strong>Precio </strong>
-                            </div>
-                            <div class="seccion">
-                                20.000 COP
+                                {{infoHabitacion[4]}}
                             </div>
                         </div>
                     </div>
@@ -237,24 +229,12 @@
                     </div>
 
                     <div id="datos">
-                        <div>
-                            20.000 COP
-                        </div>
-                        <div>
-                            0 COP
-                        </div>
-                        <div>
-                            20.000 COP
-                        </div>
 
                     </div>
                     <hr>
-                    <div id="divButton">
-                        <input type="submit" value="Confirmar Reserva" class="btnSend">
-                    </div>
                 </div>
                 {% else %}
-                No tienes reservas para ver, realiza una :D
+                <h1 style="font-weight:bold;">No tienes reservas para ver, realiza una :D</h1>
                 {% endif %}
 
 

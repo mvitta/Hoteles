@@ -415,12 +415,19 @@ def buscarReserva():
     cur.execute(sql, [claveUsuario])
     conexion.commit()
     infoReserva = cur.fetchone()
+
+    idReserva = infoReserva[2]
+
+    sql = "SELECT tipo_habitacion, tipo_cama, sabanas, numero_camas, servicios FROM habitaciones WHERE id_habitacion=?"
+    cur.execute(sql, [idReserva])
+    infoHabitacion = cur.fetchone()
+
     cur.close()
 
     if infoReserva != None:
         tieneReserva = True
-    print(infoReserva)
-    return render_template('BuscarReservaUsuariofinal.html', tieneReserva=tieneReserva, infoReserva=infoReserva)
+
+    return render_template('BuscarReservaUsuariofinal.html', tieneReserva=tieneReserva, infoReserva=infoReserva, infoHabitacion=infoHabitacion)
 
 
 @app.route('/DashboardUsuariofinal/comentario', methods=['GET', 'POST'])
