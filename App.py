@@ -1,4 +1,4 @@
-from sqlite3.dbapi2 import Cursor
+from sqlite3.dbapi2 import Cursor, Error
 from flask import Flask, render_template, redirect, url_for, session, request
 from flask import g
 import os
@@ -8,6 +8,7 @@ import sqlite3
 
 app = Flask(__name__)
 app.secret_key = os.urandom(34)
+
 DATABASE_USUARIO = "hotel.db"
 claveUsuario = None
 claveAdmin = None
@@ -16,6 +17,17 @@ Habitaciones = None
 idHab = None
 idParaReservas = None
 valida = None
+
+
+def obtenerIdHabitacion(idUsuario):
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "SELECT id_habitacion FROM reservas WHERE id_usuario=?"
+    cur.execute(sql, [idUsuario])
+    conexion.commit()
+    info = cur.fetchone()
+    cur.close()
+    return info
 
 
 def conexionBaseDeDatos():
@@ -231,7 +243,6 @@ def hacerlogin():
                 return "El correo no es valido para iniciar sersion"
         else:
             return "bad request"
-
     except Exception as error:
         print("Error de exception: ", error)
         return redirect(url_for('index'))
@@ -323,8 +334,20 @@ def verReservasAdmin():
     conexion.commit()
     infoUsuarios = cur.fetchall()
     cur.close()
-    print(infoUsuarios)
     return render_template("verReservasAdmin.html", infoUsuarios=infoUsuarios)
+
+
+@app.route('/dashboardAdministrador/verCalificacionHabitaciones')
+def verCalificacionHabitaciones():
+    conexion = conexionBaseDeDatos()
+    cur = conexion.cursor()
+    sql = "SELECT * FROM calificaciones"
+    cur.execute(sql)
+    conexion.commit()
+    infoCalificaciones = cur.fetchall()
+    cur.close()
+    print(infoCalificaciones)
+    return render_template("verCalificacionesAdmin.html", infoCalificaciones=infoCalificaciones)
 
 
 # ----------- USUARIO FINAL --------------
@@ -387,8 +410,30 @@ def buscarReserva():
     return render_template('BuscarReservaUsuariofinal.html', tieneReserva=tieneReserva, infoReserva=infoReserva)
 
 
-@app.route('/DashboardUsuariofinal/comentario')
+@app.route('/DashboardUsuariofinal/comentario', methods=['GET', 'POST'])
 def comentario():
+    if request.method == "POST":
+        try:
+            reservacionAfectada = request.form.get('calificacion')
+            satisfaccion = request.form.get('satis')
+            coment = request.form.get('descripcion_calificacion')
+            visitaProbable = request.form.get('selectroom')
+            conexion = conexionBaseDeDatos()
+            cur = conexion.cursor()
+            sql = "INSERT OR IGNORE INTO comentarios (id_usuario, id_habitacion, reservacionAfectadaCovid, satisfaccion, comentario, visitaProbable) VALUES (?, ?, ?, ?, ?, ?)"
+            idHabitacion = obtenerIdHabitacion(claveUsuario)
+            print(claveUsuario, idHabitacion[0], reservacionAfectada,
+                  satisfaccion, coment, visitaProbable)
+            cur.execute(
+                sql, [claveUsuario, idHabitacion[0], reservacionAfectada, satisfaccion, coment, visitaProbable])
+            conexion.commit()
+            sql = "INSERT OR IGNORE INTO calificaciones (id_usuario, id_habitacion, val_calificacion) VALUES (?, ?, ?)"
+            cur.execute(sql, [claveUsuario, idHabitacion[0], satisfaccion])
+            conexion.commit()
+            cur.close()
+        except Error as err:
+            return "" + str(err)
+        return redirect(url_for('comentario'))
     return render_template('comentarios.html')
 
 # ----------- SUPER ADMINISTRADOR --------------
@@ -425,8 +470,6 @@ def crearHabitacionSuper():
         sabanas = request.form.get('sabanas')
         numeroCamas = request.form.get('numeroCamas')
         servicios = request.form.get('servicios')
-        print(habitacion, tipoHabitacion, sabanas, numeroCamas, servicios)
-        print(claveSuper)
         conexion = conexionBaseDeDatos()
         cur = conexion.cursor()
         sql = "INSERT INTO habitaciones (id_administrador, tipo_habitacion, tipo_cama, sabanas, numero_camas, servicios) VALUES (?, ?, ?, ?, ?, ?)"
@@ -445,8 +488,6 @@ def EditarEliminarSuper():
     seccionEditar = False
     metodo = request.method
     valorSelect = request.form.get('_idHabi')
-    print(metodo)
-    print(valorSelect)
     if metodo == "POST":
         if request.form.get('btn') == "Ir a editar":
             seccionEditar = True
@@ -455,8 +496,6 @@ def EditarEliminarSuper():
             Habitaciones = listaDeHabitaciones()
             idHab = obetenerIdHabitaciones()
         elif request.form.get('btn') == "editar":
-            # solo ingresa aqui cuando se haga una nueva peticion post y no se presionen ninguno de los botones anteriores
-            # cuando se habra esta seccion los botones ir a editar y eliminar deben bloquearse
             editarHabitacion = request.form.get('habitacion')
             editarTipoHabitacion = request.form.get('tipoHabitacion')
             editarSabanas = request.form.get('sabanas')
